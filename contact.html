@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Elena A. Whitmore</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ivory: #F8F5EF;
+            --sand: #E9DFD1;
+            --espresso: #30251F;
+            --terracotta: #B87556;
+            --sage: #7D8570;
+            --body-text: #756A61;
+            --border: #D8CABC;
+            --deep-teal: #1E2B2B;
+            --gold: #C4A574;
+            
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Manrope', system-ui, sans-serif;
+            
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-gentle: cubic-bezier(0.33, 1, 0.68, 1);
+            --transition-dramatic: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--ivory);
+            color: var(--body-text);
+            font-size: 17px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        
+        /* NAV */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 0 48px;
+            transition: background 0.5s ease, padding 0.5s ease;
+        }
+        .nav.scrolled {
+            background: rgba(248, 245, 239, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 88px; max-width: 1400px; margin: 0 auto;
+        }
+        .nav-logo {
+            font-family: var(--font-display); font-size: 22px; font-weight: 600;
+            color: var(--espresso); letter-spacing: 0.04em; transition: color 0.3s ease;
+        }
+        .nav-logo:hover { color: var(--terracotta); }
+        .nav-links { display: flex; align-items: center; gap: 44px; list-style: none; }
+        .nav-links a {
+            font-size: 13px; font-weight: 500; color: var(--espresso);
+            letter-spacing: 0.08em; text-transform: uppercase;
+            position: relative; padding: 4px 0; transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 1px; background: var(--terracotta);
+            transition: width 0.5s var(--transition-smooth);
+        }
+        .nav-links a:hover { color: var(--terracotta); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--terracotta); }
+        .nav-links a.active::after { width: 100%; }
+        .nav-cta {
+            font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; padding: 14px 28px;
+            border: 1px solid var(--espresso); color: var(--espresso);
+            transition: all 0.4s var(--transition-smooth);
+        }
+        .nav-cta:hover { background: var(--espresso); color: var(--ivory); }
+        .nav-toggle { display: none; flex-direction: column; gap: 6px; padding: 8px; }
+        .nav-toggle span { display: block; width: 26px; height: 1px; background: var(--espresso); }
+        
+        /* PAGE HERO */
+        .page-hero {
+            padding: 200px 0 100px;
+            background: var(--ivory);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+            background: radial-gradient(ellipse at 80% 40%, rgba(233, 223, 209, 0.5) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero-inner {
+            max-width: 1400px; margin: 0 auto; padding: 0 48px;
+            position: relative; z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 80px;
+        }
+        .page-hero-eyebrow {
+            font-size: 10px; font-weight: 600; letter-spacing: 0.35em;
+            text-transform: uppercase; color: var(--terracotta);
+            margin-bottom: 36px; display: flex; align-items: center; gap: 20px;
+        }
+        .page-hero-eyebrow::before {
+            content: ''; display: inline-block; width: 60px; height: 1px; background: var(--terracotta);
+        }
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 6vw, 88px);
+            font-weight: 400; line-height: 1.02;
+            color: var(--espresso); margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+        .page-hero-title em { font-style: italic; color: var(--terracotta); font-weight: 500; }
+        .page-hero-intro {
+            font-size: 18px; line-height: 1.85; color: var(--body-text);
+            max-width: 520px;
+        }
+        .page-hero-aside {
+            max-width: 280px;
+        }
+        .page-hero-aside-label {
+            font-size: 10px; font-weight: 600; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px;
+        }
+        .page-hero-aside-text {
+            font-family: var(--font-display);
+            font-size: 24px; font-style: italic;
+            line-height: 1.4; color: var(--espresso);
+        }
+        
+        /* CONTACT SECTION */
+        .contact-section {
+            padding: 0 0 160px;
+            background: var(--ivory);
+        }
+        .contact-inner {
+            max-width: 1400px; margin: 0 auto; padding: 0 48px;
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 100px;
+            align-items: start;
+        }
+        
+        /* FORM */
+        .contact-form-wrapper {
+            background: var(--sand);
+            padding: 64px 56px;
+            position: relative;
+        }
+        .contact-form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--terracotta);
+        }
+        .form-heading {
+            font-family: var(--font-display);
+            font-size: 36px; font-weight: 500;
+            color: var(--espresso); margin-bottom: 12px;
+        }
+        .form-subheading {
+            font-size: 15px; line-height: 1.7;
+            color: var(--body-text); margin-bottom: 40px;
+        }
+        .form-group {
+            margin-bottom: 28px;
+        }
+        .form-label {
+            display: block;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--espresso); margin-bottom: 10px;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--espresso);
+            background: var(--ivory);
+            border: 1px solid var(--border);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--body-text);
+            opacity: 0.5;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(184, 117, 86, 0.1);
+        }
+        .form-select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23756A61' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            padding-right: 48px;
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 160px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 20px 40px;
+            background: var(--espresso);
+            color: var(--ivory);
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid var(--espresso);
+            transition: all 0.4s var(--transition-smooth);
+            margin-top: 12px;
+        }
+        .form-submit:hover {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+        .form-note {
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--body-text);
+            opacity: 0.7;
+            text-align: center;
+        }
+        
+        /* CONTACT ASIDE */
+        .contact-aside {
+            padding-top: 20px;
+        }
+        .aside-block {
+            margin-bottom: 56px;
+        }
+        .aside-label {
+            font-size: 10px; font-weight: 600;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 20px;
+        }
+        .aside-heading {
+            font-family: var(--font-display);
+            font-size: 28px; font-weight: 500;
+            color: var(--espresso); margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .aside-text {
+            font-size: 15px; line-height: 1.8;
+            color: var(--body-text); margin-bottom: 16px;
+        }
+        .aside-link {
+            font-size: 13px; font-weight: 600;
+            letter-spacing: 0.05em; color: var(--espresso);
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: gap 0.3s ease, color 0.3s ease;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+        }
+        .aside-link:hover {
+            gap: 14px;
+            color: var(--terracotta);
+            border-bottom-color: var(--terracotta);
+        }
+        .aside-divider {
+            width: 60px; height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            list-style: none;
+        }
+        .social-links a {
+            font-size: 15px;
+            color: var(--body-text);
+            display: flex; align-items: center; gap: 10px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover { color: var(--terracotta); }
+        .social-links a::before {
+            content: '→';
+            color: var(--terracotta);
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .social-links a:hover::before {
+            transform: translateX(4px);
+        }
+        
+        /* FAQ / ENQUIRY GUIDE */
+        .enquiry-guide {
+            padding: 160px 0;
+            background: var(--sand);
+        }
+        .enquiry-guide-inner {
+            max-width: 1400px; margin: 0 auto; padding: 0 48px;
+        }
+        .enquiry-guide-header {
+            max-width: 520px; margin-bottom: 60px;
+        }
+        .section-label {
+            font-size: 10px; font-weight: 600; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--terracotta); margin-bottom: 24px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 400; line-height: 1.1; color: var(--espresso);
+        }
+        .enquiry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .enquiry-card {
+            background: var(--ivory);
+            padding: 40px 36px;
+            transition: transform 0.5s var(--transition-gentle), box-shadow 0.5s var(--transition-gentle);
+        }
+        .enquiry-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(48, 37, 31, 0.06);
+        }
+        .enquiry-icon {
+            font-family: var(--font-display);
+            font-size: 32px;
+            color: var(--terracotta);
+            margin-bottom: 20px;
+        }
+        .enquiry-card h3 {
+            font-family: var(--font-display);
+            font-size: 24px; font-weight: 500;
+            color: var(--espresso); margin-bottom: 12px;
+        }
+        .enquiry-card p {
+            font-size: 14px; line-height: 1.7;
+            color: var(--body-text);
+        }
+        
+        /* CLOSING CTA */
+        .closing-cta {
+            padding: 160px 0;
+            background: var(--ivory);
+            text-align: center;
+        }
+        .closing-cta-inner { max-width: 640px; margin: 0 auto; padding: 0 48px; }
+        .closing-cta-text {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 400; line-height: 1.25;
+            color: var(--espresso); margin-bottom: 24px;
+        }
+        .closing-cta-text em { font-style: italic; color: var(--terracotta); }
+        .closing-cta-signoff {
+            font-size: 15px;
+            color: var(--body-text);
+            font-style: italic;
+        }
+        
+        /* FOOTER */
+        .footer { padding: 100px 0 48px; background: var(--sand); }
+        .footer-inner {
+            max-width: 1400px; margin: 0 auto; padding: 0 48px;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 80px; margin-bottom: 80px;
+        }
+        .footer-brand .nav-logo { font-size: 26px; display: inline-block; margin-bottom: 20px; }
+        .footer-tagline { font-size: 14px; line-height: 1.8; color: var(--body-text); max-width: 300px; }
+        .footer-heading {
+            font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--espresso); margin-bottom: 24px;
+        }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+        .footer-links a { font-size: 14px; color: var(--body-text); transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--terracotta); }
+        .footer-bottom {
+            max-width: 1400px; margin: 0 auto; padding: 40px 48px 0;
+            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 12px; color: var(--body-text);
+        }
+        .footer-social { display: flex; gap: 28px; }
+        .footer-social a { font-size: 12px; font-weight: 500; color: var(--body-text); transition: color 0.3s ease; }
+        .footer-social a:hover { color: var(--terracotta); }
+        
+        /* REVEAL */
+        .reveal {
+            opacity: 0; transform: translateY(50px);
+            transition: opacity 1s var(--transition-gentle), transform 1s var(--transition-gentle);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .nav { padding: 0 32px; }
+            .nav.scrolled { padding: 0 32px; }
+            .page-hero-inner, .contact-inner, .enquiry-guide-inner, .footer-inner { padding: 0 32px; }
+            .footer-bottom { padding: 40px 32px 0; }
+        }
+        
+        @media (max-width: 1024px) {
+            .page-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .page-hero-aside { max-width: 100%; }
+            .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+            .contact-form-wrapper { padding: 48px 40px; }
+            .enquiry-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 48px; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav { padding: 0 24px; }
+            .nav.scrolled { padding: 0 24px; }
+            .nav-inner { height: 72px; }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-toggle { display: flex; }
+            
+            .page-hero { padding: 140px 0 80px; }
+            .page-hero-inner { padding: 0 24px; }
+            .page-hero-title { font-size: clamp(38px, 10vw, 56px); }
+            
+            .contact-section { padding: 0 0 100px; }
+            .contact-inner { padding: 0 24px; }
+            .contact-form-wrapper { padding: 40px 28px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            
+            .enquiry-guide { padding: 100px 0; }
+            .enquiry-guide-inner { padding: 0 24px; }
+            .enquiry-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            
+            .closing-cta { padding: 100px 0; }
+            .closing-cta-inner { padding: 0 24px; }
+            
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">E. A. Whitmore</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="journal.html">Journal</a></li>
+                <li><a href="events.html">Events & Press</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <a href="index.html#newsletter" class="nav-cta">Reading Circle</a>
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <div class="reveal">
+                <div class="page-hero-eyebrow">Let's connect</div>
+                <h1 class="page-hero-title">
+                    Some of the best<br>
+                    conversations begin<br>
+                    with <em>hello.</em>
+                </h1>
+                <p class="page-hero-intro">
+                    Whether you're a reader, fellow writer, book club organiser, journalist, or someone who simply wants to share a thought, I'd love to hear from you. Send a note using the form below.
+                </p>
+            </div>
+            <div class="page-hero-aside reveal reveal-delay-1">
+                <div class="page-hero-aside-label">A note from Elena</div>
+                <p class="page-hero-aside-text">
+                    "Every message that arrives is a small reminder that stories connect us in ways we don't always expect."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <!-- FORM -->
+            <div class="contact-form-wrapper reveal">
+                <h2 class="form-heading">Write me a little note.</h2>
+                <p class="form-subheading">
+                    Fill in the form below and I'll do my best to reply as soon as I can.
+                </p>
+                
+                <form onsubmit="event.preventDefault(); alert('Thank you for your message. This is a fictional portfolio demonstration. Your note has been received.');">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" class="form-input" id="name" placeholder="How should I address you?" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" class="form-input" id="email" placeholder="Where can I reply?" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="enquiry-type">What is your message about?</label>
+                        <select class="form-select" id="enquiry-type" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="reader">Reader message</option>
+                            <option value="book-club">Book club invitation</option>
+                            <option value="media">Media or interview request</option>
+                            <option value="speaking">Speaking engagement</option>
+                            <option value="publishing">Publishing enquiry</option>
+                            <option value="other">Something else</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Subject</label>
+                        <input type="text" class="form-input" id="subject" placeholder="Give your message a subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Your Message</label>
+                        <textarea class="form-textarea" id="message" placeholder="Tell me a little more..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Send Your Message</button>
+                    <p class="form-note">I read every message personally. Thank you for your patience.</p>
+                </form>
+            </div>
+            
+            <!-- ASIDE -->
+            <div class="contact-aside reveal reveal-delay-1">
+                <div class="aside-block">
+                    <div class="aside-label">Prefer a different way?</div>
+                    <h3 class="aside-heading">For press, speaking, or event enquiries</h3>
+                    <p class="aside-text">
+                        Please include a few details about your organisation, the opportunity, and any relevant dates. I'm always glad to explore thoughtful conversations.
+                    </p>
+                    <a href="mailto:hello@example.com" class="aside-link">hello@example.com →</a>
+                </div>
+                
+                <div class="aside-divider"></div>
+                
+                <div class="aside-block">
+                    <div class="aside-label">Reader Messages</div>
+                    <h3 class="aside-heading">Tell me which book you've been reading</h3>
+                    <p class="aside-text">
+                        I always enjoy hearing what a story means to someone else. Your note might be the beginning of a conversation I carry with me for a long time.
+                    </p>
+                </div>
+                
+                <div class="aside-divider"></div>
+                
+                <div class="aside-block">
+                    <div class="aside-label">Find Me Elsewhere</div>
+                    <ul class="social-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Goodreads</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENQUIRY GUIDE -->
+    <section class="enquiry-guide">
+        <div class="enquiry-guide-inner">
+            <div class="enquiry-guide-header reveal">
+                <div class="section-label">How Can I Help?</div>
+                <h2 class="section-title">A guide to your enquiry.</h2>
+            </div>
+            
+            <div class="enquiry-grid">
+                <div class="enquiry-card reveal">
+                    <div class="enquiry-icon">❦</div>
+                    <h3>Book Clubs</h3>
+                    <p>I love joining book club conversations, whether in person or virtual. Include your group's name, the book you're reading, and a few possible dates.</p>
+                </div>
+                
+                <div class="enquiry-card reveal reveal-delay-1">
+                    <div class="enquiry-icon">❦</div>
+                    <h3>Media & Interviews</h3>
+                    <p>For interviews, podcast appearances, or press features, please include your outlet, deadline, and the themes you'd like to discuss.</p>
+                </div>
+                
+                <div class="enquiry-card reveal reveal-delay-2">
+                    <div class="enquiry-icon">❦</div>
+                    <h3>Speaking Engagements</h3>
+                    <p>I'm available for literary festivals, panels, and workshops. Share the event details, audience, and what you'd like the conversation to explore.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="closing-cta">
+        <div class="closing-cta-inner reveal">
+            <p class="closing-cta-text">
+                Thank you for being here. I look forward to hearing from <em>you.</em>
+            </p>
+            <p class="closing-cta-signoff">— Elena</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">E. A. Whitmore</a>
+                <p class="footer-tagline">
+                    Stories that stay with you. Novelist writing about identity, family, belonging, and the beautiful complexity of being human.
+                </p>
+            </div>
+            <div>
+                <div class="footer-heading">Explore</div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="journal.html">Journal</a></li>
+                    <li><a href="events.html">Events & Press</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Connect</div>
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Goodreads</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Newsletter</div>
+                <ul class="footer-links">
+                    <li><a href="index.html#newsletter">Join the Reading Circle</a></li>
+                    <li><a href="#">Book Club Resources</a></li>
+                    <li><a href="#">Media Kit</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Elena A. Whitmore. Fictional author website concept.</div>
+            <div class="footer-social">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+        
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
