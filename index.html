@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elena A. Whitmore — Author · Novelist · Storyteller</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* ============================================
-           DESIGN SYSTEM — Editorial Luxury
+           DESIGN SYSTEM — "The Author as Artifact"
            ============================================ */
         :root {
             --ivory: #F8F5EF;
@@ -22,17 +21,17 @@
             --sage: #7D8570;
             --body-text: #756A61;
             --border: #D8CABC;
+            --deep-teal: #1E2B2B;
+            --gold: #C4A574;
             
             --font-display: 'Cormorant Garamond', Georgia, serif;
             --font-body: 'Manrope', system-ui, sans-serif;
             
             --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --transition-gentle: cubic-bezier(0.33, 1, 0.68, 1);
+            --transition-dramatic: cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        /* ============================================
-           RESET & BASE
-           ============================================ */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -54,104 +53,26 @@
             overflow-x: hidden;
         }
         
-        img {
-            max-width: 100%;
-            display: block;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-        
-        /* ============================================
-           UTILITY CLASSES
-           ============================================ */
-        .container {
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
         
-        .eyebrow {
-            font-family: var(--font-body);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--terracotta);
-            margin-bottom: 20px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 16px 32px;
-            border-radius: 2px;
-            transition: all 0.4s var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary {
-            background-color: var(--espresso);
-            color: var(--ivory);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--terracotta);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(48, 37, 31, 0.15);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--espresso);
-            border: 1px solid var(--border);
-        }
-        
-        .btn-outline:hover {
-            border-color: var(--espresso);
-            background: var(--espresso);
-            color: var(--ivory);
-            transform: translateY(-2px);
-        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
         
         /* ============================================
-           SCROLL REVEAL ANIMATIONS
-           ============================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s var(--transition-gentle), 
-                        transform 0.9s var(--transition-gentle);
-        }
-        
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        
-        /* ============================================
-           NAVIGATION
+           NAVIGATION — Minimal, Editorial
            ============================================ */
         .nav {
             position: fixed;
@@ -159,53 +80,51 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(248, 245, 239, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            padding: 0 48px;
+            transition: background 0.5s ease, padding 0.5s ease;
         }
         
         .nav.scrolled {
-            border-bottom-color: var(--border);
-            box-shadow: 0 1px 20px rgba(48, 37, 31, 0.04);
+            background: rgba(248, 245, 239, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 0 48px;
+            border-bottom: 1px solid var(--border);
         }
         
         .nav-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 80px;
-            max-width: 1200px;
+            height: 88px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
         }
         
         .nav-logo {
             font-family: var(--font-display);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             color: var(--espresso);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.04em;
             transition: color 0.3s ease;
         }
         
-        .nav-logo:hover {
-            color: var(--terracotta);
-        }
+        .nav-logo:hover { color: var(--terracotta); }
         
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 44px;
             list-style: none;
         }
         
         .nav-links a {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--espresso);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             position: relative;
             padding: 4px 0;
             transition: color 0.3s ease;
@@ -214,301 +133,395 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
             left: 0;
             width: 0;
             height: 1px;
             background: var(--terracotta);
-            transition: width 0.4s var(--transition-smooth);
+            transition: width 0.5s var(--transition-smooth);
         }
         
-        .nav-links a:hover {
-            color: var(--terracotta);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        .nav-links a:hover { color: var(--terracotta); }
+        .nav-links a:hover::after { width: 100%; }
         
         .nav-cta {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 12px 24px;
-            background: var(--espresso);
-            color: var(--ivory);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border: 1px solid var(--espresso);
+            color: var(--espresso);
+            border-radius: 0;
+            transition: all 0.4s var(--transition-smooth);
+            background: transparent;
         }
         
         .nav-cta:hover {
-            background: var(--terracotta);
+            background: var(--espresso);
+            color: var(--ivory);
         }
         
-        /* Mobile nav toggle */
         .nav-toggle {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             padding: 8px;
         }
         
         .nav-toggle span {
             display: block;
-            width: 24px;
-            height: 1.5px;
+            width: 26px;
+            height: 1px;
             background: var(--espresso);
             transition: all 0.3s ease;
         }
         
         /* ============================================
-           HERO SECTION
+           HERO — Asymmetric, Full-Bleed Portrait
            ============================================ */
         .hero {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             position: relative;
             overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 60%;
-            height: 80%;
-            background: radial-gradient(ellipse at center, rgba(233, 223, 209, 0.5) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 55% 45%;
-            gap: 60px;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            position: relative;
-            z-index: 1;
+            background: var(--ivory);
         }
         
         .hero-content {
-            max-width: 580px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 80px 120px 48px;
+            max-width: 720px;
+            margin-left: auto;
+            position: relative;
+            z-index: 2;
         }
         
         .hero-eyebrow {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--terracotta);
-            margin-bottom: 28px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
         
         .hero-eyebrow::before {
             content: '';
             display: inline-block;
-            width: 40px;
+            width: 60px;
             height: 1px;
             background: var(--terracotta);
         }
         
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(52px, 6vw, 86px);
-            font-weight: 500;
-            line-height: 1.08;
+            font-size: clamp(56px, 7vw, 104px);
+            font-weight: 400;
+            line-height: 0.98;
             color: var(--espresso);
-            margin-bottom: 32px;
-            letter-spacing: -0.01em;
+            margin-bottom: 44px;
+            letter-spacing: -0.02em;
         }
         
         .hero-title em {
             font-style: italic;
             color: var(--terracotta);
+            font-weight: 500;
+        }
+        
+        .hero-title .line-indent {
+            padding-left: 0.8em;
         }
         
         .hero-description {
             font-size: 17px;
-            line-height: 1.8;
+            line-height: 1.85;
             color: var(--body-text);
-            max-width: 460px;
-            margin-bottom: 40px;
+            max-width: 420px;
+            margin-bottom: 52px;
         }
         
         .hero-actions {
             display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        
-        /* Hero portrait */
-        .hero-portrait {
-            position: relative;
-            display: flex;
-            justify-content: center;
+            gap: 0;
             align-items: center;
         }
         
-        .portrait-frame {
-            position: relative;
-            width: 100%;
-            max-width: 420px;
-            aspect-ratio: 4/5;
-            border-radius: 200px 200px 200px 200px;
-            overflow: hidden;
-            background: var(--sand);
-            box-shadow: 0 40px 80px rgba(48, 37, 31, 0.12);
+        .btn-hero-primary {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            background: var(--espresso);
+            color: var(--ivory);
+            transition: all 0.4s var(--transition-smooth);
+            border: 1px solid var(--espresso);
         }
         
-        .portrait-frame img {
+        .btn-hero-primary:hover {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+        
+        .btn-hero-secondary {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            background: transparent;
+            color: var(--espresso);
+            border: 1px solid var(--border);
+            border-left: none;
+            transition: all 0.4s var(--transition-smooth);
+        }
+        
+        .btn-hero-secondary:hover {
+            border-color: var(--espresso);
+            background: var(--espresso);
+            color: var(--ivory);
+        }
+        
+        /* Hero Portrait — Full bleed right, cropped dramatically */
+        .hero-portrait {
+            position: relative;
+            overflow: hidden;
+            background: var(--sand);
+        }
+        
+        .hero-portrait::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--ivory) 0%, transparent 15%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .hero-portrait img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1.2s var(--transition-gentle);
+            object-position: center 20%;
+            transform: scale(1.02);
+            transition: transform 1.8s var(--transition-dramatic);
         }
         
-        .portrait-frame:hover img {
+        .hero-portrait:hover img {
+            transform: scale(1.06);
+        }
+        
+        /* Vertical text accent */
+        .hero-vertical-text {
+            position: absolute;
+            right: 32px;
+            bottom: 120px;
+            writing-mode: vertical-rl;
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            opacity: 0.4;
+            z-index: 4;
+        }
+        
+        /* ============================================
+           MARQUEE / PULL QUOTE STRIP
+           ============================================ */
+        .marquee {
+            background: var(--espresso);
+            color: var(--ivory);
+            padding: 32px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee-inner {
+            display: inline-flex;
+            animation: marquee 40s linear infinite;
+        }
+        
+        .marquee-item {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-style: italic;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            color: rgba(248, 245, 239, 0.85);
+        }
+        
+        .marquee-item::after {
+            content: '✦';
+            font-size: 14px;
+            color: var(--terracotta);
+            font-style: normal;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* ============================================
+           ABOUT SECTION — Editorial Split
+           ============================================ */
+        .about {
+            padding: 160px 0;
+            background: var(--ivory);
+            position: relative;
+        }
+        
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        
+        .about-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s var(--transition-dramatic);
+        }
+        
+        .about-image:hover img {
             transform: scale(1.04);
         }
         
-        .portrait-accent {
+        .about-image::after {
+            content: '';
             position: absolute;
-            bottom: -20px;
-            right: -20px;
-            width: 140px;
-            height: 140px;
+            inset: 0;
             border: 1px solid var(--border);
-            border-radius: 50%;
+            transform: translate(16px, 16px);
+            pointer-events: none;
             z-index: -1;
         }
         
-        /* ============================================
-           INTRODUCTION SECTION
-           ============================================ */
-        .intro {
-            padding: 140px 0;
-            background: var(--sand);
-            position: relative;
+        .about-content {
+            max-width: 520px;
         }
         
-        .intro-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .intro-label {
-            font-size: 11px;
+        .about-label {
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--terracotta);
-            margin-bottom: 24px;
-        }
-        
-        .intro-heading {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 500;
-            line-height: 1.2;
-            color: var(--espresso);
             margin-bottom: 28px;
         }
         
-        .intro-text {
-            font-size: 17px;
-            line-height: 1.85;
-            color: var(--body-text);
-            margin-bottom: 36px;
-        }
-        
-        .intro-quote {
+        .about-heading {
             font-family: var(--font-display);
-            font-size: 24px;
-            font-style: italic;
-            line-height: 1.5;
+            font-size: clamp(40px, 4.5vw, 60px);
+            font-weight: 400;
+            line-height: 1.12;
             color: var(--espresso);
-            padding-left: 28px;
-            border-left: 2px solid var(--terracotta);
+            margin-bottom: 32px;
         }
         
-        .intro-image {
-            position: relative;
-            aspect-ratio: 3/4;
-            border-radius: 4px;
-            overflow: hidden;
-            background: var(--ivory);
+        .about-text {
+            font-size: 17px;
+            line-height: 1.9;
+            color: var(--body-text);
+            margin-bottom: 24px;
         }
         
-        .intro-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.2s var(--transition-gentle);
-        }
-        
-        .intro-image:hover img {
-            transform: scale(1.03);
+        .about-signature {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-style: italic;
+            color: var(--espresso);
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
         }
         
         /* ============================================
-           FEATURED BOOK SECTION
+           FEATURED BOOK — Dramatic Dark Section
            ============================================ */
         .featured {
-            padding: 140px 0;
-            background: var(--ivory);
+            padding: 160px 0;
+            background: var(--deep-teal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 70%;
+            height: 160%;
+            background: radial-gradient(ellipse at center, rgba(196, 165, 116, 0.06) 0%, transparent 65%);
+            pointer-events: none;
         }
         
         .featured-inner {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 100px;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 120px;
             align-items: center;
-        }
-        
-        .featured-book-cover {
-            position: relative;
-            aspect-ratio: 2/3;
-            max-width: 380px;
+            max-width: 1400px;
             margin: 0 auto;
-            perspective: 1200px;
+            padding: 0 48px;
+            position: relative;
+            z-index: 1;
         }
         
-        /* CSS Book Cover */
+        .featured-book {
+            position: relative;
+            perspective: 1400px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
         .book-cover {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 2/3;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.8s var(--transition-gentle);
+            transition: transform 1s var(--transition-dramatic);
             box-shadow: 
-                0 4px 8px rgba(48, 37, 31, 0.1),
-                0 20px 40px rgba(48, 37, 31, 0.12),
-                0 40px 80px rgba(48, 37, 31, 0.08);
-            border-radius: 2px 6px 6px 2px;
+                0 8px 16px rgba(0, 0, 0, 0.3),
+                0 40px 80px rgba(0, 0, 0, 0.4),
+                0 80px 120px rgba(0, 0, 0, 0.2);
+            border-radius: 2px 8px 8px 2px;
             overflow: hidden;
         }
         
         .book-cover:hover {
-            transform: rotateY(-8deg) rotateX(2deg) translateY(-8px);
-            box-shadow: 
-                0 8px 16px rgba(48, 37, 31, 0.12),
-                0 30px 60px rgba(48, 37, 31, 0.15),
-                0 60px 100px rgba(48, 37, 31, 0.1);
+            transform: rotateY(-12deg) rotateX(3deg) translateY(-12px);
         }
         
         .book-cover-rain {
-            background: linear-gradient(160deg, #2D3A3A 0%, #1E2B2B 40%, #3D4F4F 100%);
+            background: linear-gradient(165deg, #2D3A3A 0%, #1A2424 35%, #3D4F4F 100%);
             position: relative;
         }
         
@@ -517,65 +530,58 @@
             position: absolute;
             inset: 0;
             background: 
-                radial-gradient(ellipse at 30% 20%, rgba(135, 168, 168, 0.25) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(184, 117, 86, 0.15) 0%, transparent 50%);
+                radial-gradient(ellipse at 25% 15%, rgba(135, 168, 168, 0.3) 0%, transparent 45%),
+                radial-gradient(ellipse at 75% 85%, rgba(184, 117, 86, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(196, 165, 116, 0.08) 0%, transparent 60%);
         }
         
-        .book-cover-rain .cover-inner {
+        .cover-inner {
             position: relative;
             z-index: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
-            padding: 36px 32px;
-        }
-        
-        .cover-top {
-            text-align: center;
+            padding: 44px 36px;
         }
         
         .cover-author {
             font-family: var(--font-body);
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: rgba(248, 245, 239, 0.6);
-            margin-bottom: 24px;
+            color: rgba(248, 245, 239, 0.5);
+            margin-bottom: 28px;
+            text-align: center;
         }
         
-        .cover-title-main {
+        .cover-title {
             font-family: var(--font-display);
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 500;
-            line-height: 1.15;
+            line-height: 1.1;
             color: #F8F5EF;
             letter-spacing: 0.02em;
+            text-align: center;
         }
         
-        .cover-title-main em {
+        .cover-title em {
             font-style: italic;
-            color: #D4A574;
-        }
-        
-        .cover-middle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
+            color: var(--gold);
         }
         
         .cover-ornament {
-            width: 60px;
-            height: 60px;
-            border: 1px solid rgba(248, 245, 239, 0.2);
+            width: 64px;
+            height: 64px;
+            border: 1px solid rgba(248, 245, 239, 0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(248, 245, 239, 0.4);
-            font-size: 20px;
+            color: rgba(248, 245, 239, 0.3);
+            font-size: 22px;
+            margin: 0 auto;
         }
         
         .cover-bottom {
@@ -584,53 +590,63 @@
         
         .cover-tagline {
             font-family: var(--font-body);
-            font-size: 10px;
-            letter-spacing: 0.15em;
+            font-size: 9px;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: rgba(248, 245, 239, 0.5);
-            margin-bottom: 8px;
+            color: rgba(248, 245, 239, 0.4);
+            margin-bottom: 10px;
         }
         
         .cover-imprint {
             font-family: var(--font-body);
-            font-size: 9px;
-            letter-spacing: 0.2em;
+            font-size: 8px;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: rgba(248, 245, 239, 0.35);
+            color: rgba(248, 245, 239, 0.25);
         }
         
         .featured-content {
-            max-width: 500px;
+            max-width: 520px;
+        }
+        
+        .featured-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 28px;
         }
         
         .featured-heading {
             font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 500;
-            line-height: 1.15;
-            color: var(--espresso);
-            margin-bottom: 24px;
+            font-size: clamp(42px, 5vw, 64px);
+            font-weight: 400;
+            line-height: 1.08;
+            color: var(--ivory);
+            margin-bottom: 32px;
         }
         
         .featured-heading em {
             font-style: italic;
-            color: var(--terracotta);
+            color: var(--gold);
         }
         
         .featured-meta {
             display: flex;
-            gap: 20px;
-            margin-bottom: 24px;
-            font-size: 13px;
+            gap: 24px;
+            margin-bottom: 28px;
+            font-size: 12px;
             font-weight: 500;
-            color: var(--body-text);
-            letter-spacing: 0.02em;
+            color: rgba(248, 245, 239, 0.5);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
         
         .featured-meta span {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         
         .featured-meta span::before {
@@ -643,94 +659,157 @@
         }
         
         .featured-description {
-            font-size: 17px;
-            line-height: 1.85;
-            color: var(--body-text);
-            margin-bottom: 36px;
+            font-size: 16px;
+            line-height: 1.9;
+            color: rgba(248, 245, 239, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .btn-featured {
+            display: inline-block;
+            margin-top: 20px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 20px 44px;
+            background: transparent;
+            color: var(--ivory);
+            border: 1px solid rgba(248, 245, 239, 0.3);
+            transition: all 0.4s var(--transition-smooth);
+        }
+        
+        .btn-featured:hover {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+            color: var(--ivory);
         }
         
         /* ============================================
-           BOOKSHELF SECTION
+           BOOKSHELF — Horizontal Scroll Editorial
            ============================================ */
         .bookshelf {
-            padding: 140px 0;
+            padding: 160px 0;
             background: var(--sand);
+            overflow: hidden;
         }
         
         .section-header {
-            text-align: center;
-            max-width: 640px;
+            max-width: 1400px;
             margin: 0 auto 80px;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
         
-        .section-header .eyebrow {
-            margin-bottom: 20px;
+        .section-header-left {
+            max-width: 520px;
+        }
+        
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 24px;
         }
         
         .section-title {
             font-family: var(--font-display);
-            font-size: clamp(40px, 5vw, 60px);
-            font-weight: 500;
-            line-height: 1.15;
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 400;
+            line-height: 1.08;
             color: var(--espresso);
-            margin-bottom: 20px;
         }
         
-        .section-subtitle {
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--body-text);
+        .section-link {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: gap 0.3s ease, color 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--espresso);
         }
         
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+        .section-link:hover {
+            gap: 16px;
+            color: var(--terracotta);
+            border-bottom-color: var(--terracotta);
         }
+        
+        .books-scroll {
+            display: flex;
+            gap: 48px;
+            padding: 0 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .books-scroll::-webkit-scrollbar { display: none; }
         
         .book-card {
-            text-align: center;
-            transition: transform 0.5s var(--transition-gentle);
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            transition: transform 0.6s var(--transition-gentle);
         }
         
         .book-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
         }
         
         .book-card-cover {
             aspect-ratio: 2/3;
-            max-width: 240px;
-            margin: 0 auto 28px;
             position: relative;
+            margin-bottom: 32px;
             perspective: 1000px;
         }
         
         .book-card-cover .book-cover {
             box-shadow: 
                 0 4px 8px rgba(48, 37, 31, 0.08),
-                0 16px 32px rgba(48, 37, 31, 0.1);
+                0 20px 40px rgba(48, 37, 31, 0.12);
         }
         
         .book-card-cover .book-cover:hover {
-            transform: rotateY(-6deg) translateY(-4px);
+            transform: rotateY(-8deg) translateY(-6px);
+        }
+        
+        .book-cover-leave {
+            background: linear-gradient(150deg, #3A3028 0%, #2A2018 60%, #1E1610 100%);
+        }
+        
+        .book-cover-map {
+            background: linear-gradient(150deg, #2B3D3D 0%, #1A2A2A 60%, #122020 100%);
+        }
+        
+        .book-card-year {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 10px;
         }
         
         .book-card-title {
             font-family: var(--font-display);
-            font-size: 26px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 500;
             color: var(--espresso);
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-        
-        .book-card-year {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--terracotta);
             margin-bottom: 12px;
+            line-height: 1.2;
         }
         
         .book-card-desc {
@@ -738,119 +817,78 @@
             line-height: 1.7;
             color: var(--body-text);
             margin-bottom: 16px;
-            max-width: 280px;
-            margin-left: auto;
-            margin-right: auto;
         }
         
         .book-card-link {
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             color: var(--espresso);
-            letter-spacing: 0.03em;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            transition: color 0.3s ease, gap 0.3s ease;
+            gap: 8px;
+            transition: gap 0.3s ease, color 0.3s ease;
         }
         
         .book-card-link:hover {
+            gap: 14px;
             color: var(--terracotta);
-            gap: 10px;
-        }
-        
-        /* Other book covers */
-        .book-cover-leave {
-            background: linear-gradient(145deg, #3A3028 0%, #2A2018 100%);
-        }
-        
-        .book-cover-leave .cover-title-main {
-            color: #E9DFD1;
-        }
-        
-        .book-cover-leave .cover-title-main em {
-            color: #B87556;
-        }
-        
-        .book-cover-map {
-            background: linear-gradient(145deg, #2B3D3D 0%, #1A2A2A 100%);
-        }
-        
-        .book-cover-map .cover-title-main {
-            color: #D4E0D0;
-        }
-        
-        .book-cover-map .cover-title-main em {
-            color: #C4A574;
         }
         
         /* ============================================
-           TESTIMONIALS SECTION
+           QUOTE / PRAISE SECTION
            ============================================ */
-        .testimonials {
-            padding: 140px 0;
+        .praise {
+            padding: 160px 0;
             background: var(--ivory);
+            text-align: center;
         }
         
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
+        .praise-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 48px;
         }
         
-        .testimonial-card {
-            padding: 48px 36px;
-            background: var(--sand);
-            border-radius: 2px;
-            position: relative;
-            transition: transform 0.5s var(--transition-gentle), box-shadow 0.5s var(--transition-gentle);
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(48, 37, 31, 0.08);
-        }
-        
-        .testimonial-stars {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 24px;
+        .praise-stars {
             color: var(--terracotta);
-            font-size: 14px;
+            font-size: 16px;
+            letter-spacing: 6px;
+            margin-bottom: 40px;
         }
         
-        .testimonial-text {
+        .praise-quote {
             font-family: var(--font-display);
-            font-size: 22px;
+            font-size: clamp(28px, 3.5vw, 44px);
             font-style: italic;
-            line-height: 1.5;
+            font-weight: 400;
+            line-height: 1.4;
             color: var(--espresso);
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
         
-        .testimonial-author {
+        .praise-attribution {
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--body-text);
         }
         
-        .testimonial-note {
-            text-align: center;
-            margin-top: 40px;
+        .praise-note {
+            margin-top: 48px;
             font-size: 12px;
-            color: var(--body-text);
             font-style: italic;
-            opacity: 0.7;
+            color: var(--body-text);
+            opacity: 0.6;
         }
         
         /* ============================================
-           NEWSLETTER SECTION
+           NEWSLETTER — Full Width Statement
            ============================================ */
         .newsletter {
-            padding: 140px 0;
+            padding: 180px 0;
             background: var(--espresso);
             position: relative;
             overflow: hidden;
@@ -859,55 +897,64 @@
         .newsletter::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(184, 117, 86, 0.08) 0%, transparent 60%);
+            top: -40%;
+            left: -10%;
+            width: 70%;
+            height: 180%;
+            background: radial-gradient(ellipse at center, rgba(184, 117, 86, 0.1) 0%, transparent 60%);
             pointer-events: none;
         }
         
         .newsletter-inner {
-            max-width: 600px;
+            max-width: 680px;
             margin: 0 auto;
+            padding: 0 48px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
         
-        .newsletter .eyebrow {
+        .newsletter-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
             color: var(--terracotta);
+            margin-bottom: 32px;
         }
         
         .newsletter-title {
             font-family: var(--font-display);
-            font-size: clamp(36px, 4.5vw, 56px);
-            font-weight: 500;
-            line-height: 1.15;
+            font-size: clamp(44px, 5.5vw, 72px);
+            font-weight: 400;
+            line-height: 1.05;
             color: var(--ivory);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         
         .newsletter-description {
             font-size: 16px;
             line-height: 1.8;
-            color: rgba(248, 245, 239, 0.7);
-            margin-bottom: 40px;
+            color: rgba(248, 245, 239, 0.6);
+            margin-bottom: 48px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .newsletter-form {
             display: flex;
-            gap: 12px;
-            max-width: 480px;
+            gap: 0;
+            max-width: 520px;
             margin: 0 auto;
         }
         
         .newsletter-input {
             flex: 1;
-            padding: 16px 20px;
-            background: rgba(248, 245, 239, 0.08);
-            border: 1px solid rgba(248, 245, 239, 0.15);
-            border-radius: 2px;
+            padding: 20px 24px;
+            background: rgba(248, 245, 239, 0.06);
+            border: 1px solid rgba(248, 245, 239, 0.12);
+            border-right: none;
             font-family: var(--font-body);
             font-size: 15px;
             color: var(--ivory);
@@ -916,69 +963,72 @@
         }
         
         .newsletter-input::placeholder {
-            color: rgba(248, 245, 239, 0.4);
+            color: rgba(248, 245, 239, 0.3);
         }
         
         .newsletter-input:focus {
             border-color: var(--terracotta);
-            background: rgba(248, 245, 239, 0.12);
+            background: rgba(248, 245, 239, 0.1);
         }
         
         .newsletter-btn {
-            padding: 16px 28px;
+            padding: 20px 36px;
             background: var(--terracotta);
             color: var(--ivory);
             font-family: var(--font-body);
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background 0.3s ease;
             white-space: nowrap;
         }
         
         .newsletter-btn:hover {
             background: #A5674A;
-            transform: translateY(-2px);
         }
         
         .newsletter-smallprint {
-            margin-top: 20px;
-            font-size: 12px;
-            color: rgba(248, 245, 239, 0.35);
+            margin-top: 24px;
+            font-size: 11px;
+            color: rgba(248, 245, 239, 0.25);
         }
         
         /* ============================================
            FOOTER
            ============================================ */
         .footer {
-            padding: 80px 0 40px;
+            padding: 100px 0 48px;
             background: var(--sand);
         }
         
         .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 80px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
         
         .footer-brand .nav-logo {
+            font-size: 26px;
             display: inline-block;
             margin-bottom: 20px;
-            font-size: 28px;
         }
         
         .footer-tagline {
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 14px;
+            line-height: 1.8;
             color: var(--body-text);
-            max-width: 320px;
+            max-width: 300px;
         }
         
         .footer-heading {
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--espresso);
             margin-bottom: 24px;
@@ -992,176 +1042,146 @@
         }
         
         .footer-links a {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--body-text);
             transition: color 0.3s ease;
         }
         
-        .footer-links a:hover {
-            color: var(--terracotta);
-        }
+        .footer-links a:hover { color: var(--terracotta); }
         
         .footer-bottom {
-            padding-top: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 48px 0;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--body-text);
         }
         
         .footer-social {
             display: flex;
-            gap: 24px;
+            gap: 28px;
         }
         
         .footer-social a {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--body-text);
             transition: color 0.3s ease;
         }
         
-        .footer-social a:hover {
-            color: var(--terracotta);
+        .footer-social a:hover { color: var(--terracotta); }
+        
+        /* ============================================
+           SCROLL REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s var(--transition-gentle), 
+                        transform 1s var(--transition-gentle);
         }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
         
         /* ============================================
            RESPONSIVE
            ============================================ */
+        @media (max-width: 1200px) {
+            .nav { padding: 0 32px; }
+            .nav.scrolled { padding: 0 32px; }
+            .hero-content { padding: 120px 48px 120px 32px; }
+            .about-inner, .featured-inner { padding: 0 32px; gap: 60px; }
+            .section-header { padding: 0 32px; }
+            .books-scroll { padding: 0 32px; }
+            .footer-inner { padding: 0 32px; gap: 48px; }
+            .footer-bottom { padding: 40px 32px 0; }
+        }
+        
         @media (max-width: 1024px) {
-            .hero-inner {
+            .hero {
                 grid-template-columns: 1fr;
-                gap: 60px;
-                text-align: center;
+                min-height: auto;
             }
             
             .hero-content {
+                padding: 160px 48px 80px;
                 max-width: 100%;
+                order: 2;
             }
             
-            .hero-eyebrow {
-                justify-content: center;
+            .hero-portrait {
+                order: 1;
+                min-height: 60vh;
             }
             
-            .hero-description {
-                margin-left: auto;
-                margin-right: auto;
+            .hero-portrait::before {
+                background: linear-gradient(180deg, var(--ivory) 0%, transparent 20%);
             }
             
-            .hero-actions {
-                justify-content: center;
-            }
+            .hero-vertical-text { display: none; }
             
-            .portrait-frame {
-                max-width: 320px;
-            }
+            .hero-title { font-size: clamp(44px, 8vw, 72px); }
             
-            .intro-inner,
-            .featured-inner {
+            .about-inner, .featured-inner {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 64px;
             }
             
-            .intro-image {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .books-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
+            .featured-book { max-width: 320px; }
             
             .footer-inner {
                 grid-template-columns: 1fr 1fr;
-                gap: 60px;
+                gap: 48px;
             }
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
+            .nav { padding: 0 24px; }
+            .nav.scrolled { padding: 0 24px; }
+            .nav-inner { height: 72px; }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-toggle { display: flex; }
             
-            .nav-inner {
-                padding: 0 24px;
-                height: 70px;
-            }
+            .hero-content { padding: 120px 24px 64px; }
+            .hero-title { font-size: clamp(38px, 10vw, 56px); }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn-hero-primary, .btn-hero-secondary { width: 100%; text-align: center; border-left: 1px solid var(--espresso); }
+            .btn-hero-secondary { border-top: none; }
             
-            .nav-links {
-                display: none;
-            }
+            .about, .featured, .bookshelf, .praise, .newsletter { padding: 100px 0; }
+            .about-inner, .featured-inner { padding: 0 24px; }
+            .section-header { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+            .books-scroll { padding: 0 24px; }
+            .book-card { flex: 0 0 260px; }
             
-            .nav-toggle {
-                display: flex;
-            }
+            .praise-inner { padding: 0 24px; }
             
-            .nav-cta {
-                display: none;
-            }
+            .newsletter-inner { padding: 0 24px; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-input { border-right: 1px solid rgba(248, 245, 239, 0.12); border-bottom: none; }
             
-            .hero {
-                min-height: auto;
-                padding-top: 100px;
-                padding-bottom: 80px;
-            }
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px 0; }
             
-            .hero-title {
-                font-size: clamp(40px, 10vw, 56px);
-            }
-            
-            .intro,
-            .featured,
-            .bookshelf,
-            .testimonials,
-            .newsletter {
-                padding: 80px 0;
-            }
-            
-            .section-header {
-                margin-bottom: 50px;
-            }
-            
-            .books-grid {
-                grid-template-columns: 1fr;
-                max-width: 320px;
-                margin: 0 auto;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .footer-inner {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            
-            .featured-book-cover {
-                max-width: 280px;
-            }
+            .marquee-item { font-size: 18px; padding: 0 40px; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================
-         NAVIGATION
-         ============================================ -->
+    <!-- NAVIGATION -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
             <a href="#" class="nav-logo">E. A. Whitmore</a>
@@ -1173,377 +1193,291 @@
                 <li><a href="#events">Events & Press</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#newsletter" class="nav-cta">Join My Reading Circle</a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+            <a href="#newsletter" class="nav-cta">Reading Circle</a>
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO SECTION
-         ============================================ -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-content reveal">
-                <div class="hero-eyebrow">Author · Novelist · Storyteller</div>
-                <h1 class="hero-title">
-                    Some stories are written.<br>
-                    Others are <em>felt.</em>
-                </h1>
-                <p class="hero-description">
-                    I write about love, identity, belonging, and the beautiful complexity of being human. Through the lives we lead and the stories we inherit, I hope to create pages that feel a little like coming home.
-                </p>
-                <div class="hero-actions">
-                    <a href="#books" class="btn btn-primary">Explore My Books</a>
-                    <a href="#about" class="btn btn-outline">Meet Elena</a>
-                </div>
+        <div class="hero-content reveal">
+            <div class="hero-eyebrow">Author · Novelist · Storyteller</div>
+            <h1 class="hero-title">
+                Some stories<br>
+                are written.<br>
+                <span class="line-indent">Others are <em>felt.</em></span>
+            </h1>
+            <p class="hero-description">
+                I write about love, identity, belonging, and the beautiful complexity of being human. Through the lives we lead and the stories we inherit, I hope to create pages that feel a little like coming home.
+            </p>
+            <div class="hero-actions">
+                <a href="#books" class="btn-hero-primary">Explore My Books</a>
+                <a href="#about" class="btn-hero-secondary">Meet Elena</a>
             </div>
-            <div class="hero-portrait reveal reveal-delay-2">
-                <div class="portrait-frame">
-                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&q=80" 
-                         alt="Elena A. Whitmore — Author Portrait" 
-                         loading="eager">
-                </div>
-                <div class="portrait-accent"></div>
+        </div>
+        <div class="hero-portrait reveal reveal-delay-1">
+            <img src="https://ik.imagekit.io/nwtyxrcs8/elena.png" 
+                 alt="Elena A. Whitmore" 
+                 loading="eager">
+            <div class="hero-vertical-text">Elena A. Whitmore · Author</div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-inner">
+            <span class="marquee-item">Stories that stay with you</span>
+            <span class="marquee-item">Contemporary Fiction</span>
+            <span class="marquee-item">Literary Fiction</span>
+            <span class="marquee-item">Women's Stories</span>
+            <span class="marquee-item">Stories that stay with you</span>
+            <span class="marquee-item">Contemporary Fiction</span>
+            <span class="marquee-item">Literary Fiction</span>
+            <span class="marquee-item">Women's Stories</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-inner">
+            <div class="about-image reveal">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900&q=80" 
+                     alt="Elena's writing desk" 
+                     loading="lazy">
+            </div>
+            <div class="about-content reveal reveal-delay-1">
+                <div class="about-label">A little about me</div>
+                <h2 class="about-heading">A little about the woman behind the words.</h2>
+                <p class="about-text">
+                    I'm Elena, a novelist drawn to the quiet moments that often say the most. The conversations left unfinished, the memories we carry without noticing, and the small decisions that change the shape of a life are where many of my stories begin.
+                </p>
+                <p class="about-text">
+                    My work explores the ties that bind us, the truths we learn to live with, and the courage it takes to begin again.
+                </p>
+                <div class="about-signature">Elena</div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         INTRODUCTION SECTION
-         ============================================ -->
-    <section class="intro" id="about">
-        <div class="container">
-            <div class="intro-inner">
-                <div class="intro-content reveal">
-                    <div class="intro-label">A little about me</div>
-                    <h2 class="intro-heading">A little about the woman behind the words.</h2>
-                    <p class="intro-text">
-                        I'm Elena, a novelist drawn to the quiet moments that often say the most. The conversations left unfinished, the memories we carry without noticing, and the small decisions that change the shape of a life are where many of my stories begin.
-                    </p>
-                    <p class="intro-text">
-                        My work explores the ties that bind us, the truths we learn to live with, and the courage it takes to begin again.
-                    </p>
-                    <div class="intro-quote">
-                        "I am interested in the things people don't always say, but never quite forget."
+    <!-- FEATURED BOOK -->
+    <section class="featured" id="featured">
+        <div class="featured-inner">
+            <div class="featured-book reveal">
+                <div class="book-cover book-cover-rain">
+                    <div class="cover-inner">
+                        <div class="cover-author">Elena A. Whitmore</div>
+                        <div class="cover-title">When the<br><em>Rain</em><br>Remembers</div>
+                        <div class="cover-ornament">❦</div>
+                        <div class="cover-bottom">
+                            <div class="cover-tagline">A Novel</div>
+                            <div class="cover-imprint">Whitmore Press</div>
+                        </div>
                     </div>
                 </div>
-                <div class="intro-image reveal reveal-delay-2">
-                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80" 
-                         alt="Writing desk with notebook and pen" 
-                         loading="lazy">
+            </div>
+            <div class="featured-content reveal reveal-delay-1">
+                <div class="featured-label">The Latest Novel</div>
+                <h2 class="featured-heading">When the <em>Rain</em> Remembers</h2>
+                <div class="featured-meta">
+                    <span>Literary Fiction</span>
+                    <span>2025</span>
                 </div>
+                <p class="featured-description">
+                    Some families keep their secrets in photographs. Others bury them in silence. When Amara returns to the home she thought she had outgrown, a collection of old letters begins to unravel the history her family never knew how to tell.
+                </p>
+                <p class="featured-description">
+                    A tender story about mothers and daughters, memory and forgiveness, and the complicated meaning of home.
+                </p>
+                <a href="#" class="btn-featured">Discover the Book</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         FEATURED BOOK SECTION
-         ============================================ -->
-    <section class="featured" id="featured">
-        <div class="container">
-            <div class="featured-inner">
-                <div class="featured-book-cover reveal">
-                    <div class="book-cover book-cover-rain">
+    <!-- BOOKSHELF -->
+    <section class="bookshelf" id="books">
+        <div class="section-header reveal">
+            <div class="section-header-left">
+                <div class="section-label">The Bookshelf</div>
+                <h2 class="section-title">Stories for every season of becoming.</h2>
+            </div>
+            <a href="#" class="section-link">View All Books →</a>
+        </div>
+        
+        <div class="books-scroll">
+            <!-- Book 1 -->
+            <div class="book-card reveal">
+                <div class="book-card-cover">
+                    <div class="book-cover book-cover-leave">
                         <div class="cover-inner">
-                            <div class="cover-top">
-                                <div class="cover-author">Elena A. Whitmore</div>
-                                <div class="cover-title-main">When the<br><em>Rain</em><br>Remembers</div>
-                            </div>
-                            <div class="cover-middle">
-                                <div class="cover-ornament">❦</div>
-                            </div>
+                            <div class="cover-author">Elena A. Whitmore</div>
+                            <div class="cover-title" style="font-size: 30px; color: #E9DFD1;">The Things<br>We <em>Leave</em><br>Behind</div>
+                            <div class="cover-ornament" style="border-color: rgba(233,223,209,0.12); color: rgba(233,223,209,0.25);">❦</div>
                             <div class="cover-bottom">
                                 <div class="cover-tagline">A Novel</div>
-                                <div class="cover-imprint">Whitmore Press</div>
+                                <div class="cover-imprint">2021</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="featured-content reveal reveal-delay-1">
-                    <div class="eyebrow">The Latest Novel</div>
-                    <h2 class="featured-heading">When the <em>Rain</em> Remembers</h2>
-                    <div class="featured-meta">
-                        <span>Literary Fiction</span>
-                        <span>2025</span>
-                        <span>Hardcover · Paperback · eBook</span>
+                <div class="book-card-year">2021 · Contemporary Fiction</div>
+                <h3 class="book-card-title">The Things We Leave Behind</h3>
+                <p class="book-card-desc">A family story about the secrets we inherit, the truths we avoid, and the possibility of forgiveness.</p>
+                <a href="#" class="book-card-link">Explore →</a>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="book-card reveal reveal-delay-1">
+                <div class="book-card-cover">
+                    <div class="book-cover book-cover-map">
+                        <div class="cover-inner">
+                            <div class="cover-author">Elena A. Whitmore</div>
+                            <div class="cover-title" style="font-size: 30px; color: #D4E0D0;">A Map of<br><em>Borrowed</em><br>Light</div>
+                            <div class="cover-ornament" style="border-color: rgba(212,224,208,0.12); color: rgba(212,224,208,0.25);">❦</div>
+                            <div class="cover-bottom">
+                                <div class="cover-tagline">A Novel</div>
+                                <div class="cover-imprint">2023</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="featured-description">
-                        Some families keep their secrets in photographs. Others bury them in silence. When Amara returns to the home she thought she had outgrown, a collection of old letters begins to unravel the history her family never knew how to tell.
-                    </p>
-                    <p class="featured-description">
-                        A tender story about mothers and daughters, memory and forgiveness, and the complicated meaning of home.
-                    </p>
-                    <a href="#" class="btn btn-primary">Discover the Book</a>
                 </div>
+                <div class="book-card-year">2023 · Literary Fiction</div>
+                <h3 class="book-card-title">A Map of Borrowed Light</h3>
+                <p class="book-card-desc">A moving exploration of belonging, unexpected beginnings, and finding your way when life takes an unfamiliar turn.</p>
+                <a href="#" class="book-card-link">Explore →</a>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="book-card reveal reveal-delay-2">
+                <div class="book-card-cover">
+                    <div class="book-cover book-cover-rain">
+                        <div class="cover-inner">
+                            <div class="cover-author">Elena A. Whitmore</div>
+                            <div class="cover-title" style="font-size: 30px;">When the<br><em>Rain</em><br>Remembers</div>
+                            <div class="cover-ornament">❦</div>
+                            <div class="cover-bottom">
+                                <div class="cover-tagline">A Novel</div>
+                                <div class="cover-imprint">2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card-year">2025 · Literary Fiction</div>
+                <h3 class="book-card-title">When the Rain Remembers</h3>
+                <p class="book-card-desc">A daughter returns home and discovers that the past is never quite as quiet as it seems.</p>
+                <a href="#" class="book-card-link">Explore →</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         BOOKSHELF SECTION
-         ============================================ -->
-    <section class="bookshelf" id="books">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="eyebrow">The Bookshelf</div>
-                <h2 class="section-title">Stories for every season of becoming.</h2>
-                <p class="section-subtitle">
-                    Every book begins with a question. These are the stories that have stayed with me long enough to become something of their own.
-                </p>
-            </div>
-            
-            <div class="books-grid">
-                <!-- Book 1 -->
-                <div class="book-card reveal">
-                    <div class="book-card-cover">
-                        <div class="book-cover book-cover-leave">
-                            <div class="cover-inner">
-                                <div class="cover-top">
-                                    <div class="cover-author">Elena A. Whitmore</div>
-                                    <div class="cover-title-main" style="font-size: 28px;">The Things<br>We <em>Leave</em><br>Behind</div>
-                                </div>
-                                <div class="cover-middle">
-                                    <div class="cover-ornament" style="border-color: rgba(233,223,209,0.15); color: rgba(233,223,209,0.3);">❦</div>
-                                </div>
-                                <div class="cover-bottom">
-                                    <div class="cover-tagline">A Novel</div>
-                                    <div class="cover-imprint">2021</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="book-card-year">2021 · Contemporary Fiction</div>
-                    <h3 class="book-card-title">The Things We Leave Behind</h3>
-                    <p class="book-card-desc">A family story about the secrets we inherit, the truths we avoid, and the possibility of forgiveness.</p>
-                    <a href="#" class="book-card-link">Explore the Book →</a>
-                </div>
-                
-                <!-- Book 2 -->
-                <div class="book-card reveal reveal-delay-1">
-                    <div class="book-card-cover">
-                        <div class="book-cover book-cover-map">
-                            <div class="cover-inner">
-                                <div class="cover-top">
-                                    <div class="cover-author">Elena A. Whitmore</div>
-                                    <div class="cover-title-main" style="font-size: 28px; color: #D4E0D0;">A Map of<br><em>Borrowed</em><br>Light</div>
-                                </div>
-                                <div class="cover-middle">
-                                    <div class="cover-ornament" style="border-color: rgba(212,224,208,0.15); color: rgba(212,224,208,0.3);">❦</div>
-                                </div>
-                                <div class="cover-bottom">
-                                    <div class="cover-tagline">A Novel</div>
-                                    <div class="cover-imprint">2023</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="book-card-year">2023 · Literary Fiction</div>
-                    <h3 class="book-card-title">A Map of Borrowed Light</h3>
-                    <p class="book-card-desc">A moving exploration of belonging, unexpected beginnings, and finding your way when life takes an unfamiliar turn.</p>
-                    <a href="#" class="book-card-link">Explore the Book →</a>
-                </div>
-                
-                <!-- Book 3 -->
-                <div class="book-card reveal reveal-delay-2">
-                    <div class="book-card-cover">
-                        <div class="book-cover book-cover-rain">
-                            <div class="cover-inner">
-                                <div class="cover-top">
-                                    <div class="cover-author">Elena A. Whitmore</div>
-                                    <div class="cover-title-main" style="font-size: 28px;">When the<br><em>Rain</em><br>Remembers</div>
-                                </div>
-                                <div class="cover-middle">
-                                    <div class="cover-ornament">❦</div>
-                                </div>
-                                <div class="cover-bottom">
-                                    <div class="cover-tagline">A Novel</div>
-                                    <div class="cover-imprint">2025</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="book-card-year">2025 · Literary Fiction</div>
-                    <h3 class="book-card-title">When the Rain Remembers</h3>
-                    <p class="book-card-desc">A daughter returns home and discovers that the past is never quite as quiet as it seems.</p>
-                    <a href="#" class="book-card-link">Explore the Book →</a>
-                </div>
-            </div>
+    <!-- PRAISE -->
+    <section class="praise">
+        <div class="praise-inner reveal">
+            <div class="praise-stars">★★★★★</div>
+            <p class="praise-quote">
+                "A beautifully gentle story that stayed with me long after I turned the final page. I found myself thinking about its characters as though I had known them for years."
+            </p>
+            <div class="praise-attribution">— Sample reader reflection</div>
+            <p class="praise-note">This is an illustrative sample reader reflection created for this fictional portfolio project.</p>
         </div>
     </section>
 
-    <!-- ============================================
-         TESTIMONIALS SECTION
-         ============================================ -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="eyebrow">Reader Reflections</div>
-                <h2 class="section-title">A few words from the reading circle.</h2>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "A beautifully gentle story that stayed with me long after I turned the final page. I found myself thinking about its characters as though I had known them for years."
-                    </p>
-                    <div class="testimonial-author">— Sample reader reflection</div>
-                </div>
-                
-                <div class="testimonial-card reveal reveal-delay-1">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "The writing has such a thoughtful way of noticing the little things. It made me pause, remember, and look at familiar relationships differently."
-                    </p>
-                    <div class="testimonial-author">— Sample reader reflection</div>
-                </div>
-                
-                <div class="testimonial-card reveal reveal-delay-2">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "A quiet, absorbing read about the things we carry and the things we finally learn to put down."
-                    </p>
-                    <div class="testimonial-author">— Sample reader reflection</div>
-                </div>
-            </div>
-            
-            <p class="testimonial-note">These are illustrative sample reader reflections created for this fictional portfolio project.</p>
-        </div>
-    </section>
-
-    <!-- ============================================
-         NEWSLETTER SECTION
-         ============================================ -->
+    <!-- NEWSLETTER -->
     <section class="newsletter" id="newsletter">
-        <div class="container">
-            <div class="newsletter-inner reveal">
-                <div class="eyebrow">The Reading Circle</div>
-                <h2 class="newsletter-title">A little letter, now and then.</h2>
-                <p class="newsletter-description">
-                    Join my Reading Circle for occasional notes from my writing desk, reading recommendations, early news, and little glimpses behind the stories. No noise, just letters worth opening.
-                </p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for joining the Reading Circle. This is a fictional portfolio demonstration.');">
-                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
-                    <button type="submit" class="newsletter-btn">Join the Circle</button>
-                </form>
-                <p class="newsletter-smallprint">By subscribing, you agree to receive occasional email updates. You can unsubscribe at any time.</p>
-            </div>
+        <div class="newsletter-inner reveal">
+            <div class="newsletter-label">The Reading Circle</div>
+            <h2 class="newsletter-title">A little letter, now and then.</h2>
+            <p class="newsletter-description">
+                Join my Reading Circle for occasional notes from my writing desk, reading recommendations, early news, and little glimpses behind the stories.
+            </p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for joining the Reading Circle. This is a fictional portfolio demonstration.');">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Join</button>
+            </form>
+            <p class="newsletter-smallprint">No noise, just letters worth opening. Unsubscribe anytime.</p>
         </div>
     </section>
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-brand">
-                    <a href="#" class="nav-logo">E. A. Whitmore</a>
-                    <p class="footer-tagline">
-                        Stories that stay with you. Novelist writing about identity, family, belonging, and the beautiful complexity of being human.
-                    </p>
-                </div>
-                <div>
-                    <div class="footer-heading">Explore</div>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#books">Books</a></li>
-                        <li><a href="#">Journal</a></li>
-                        <li><a href="#">Events & Press</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-heading">Connect</div>
-                    <ul class="footer-links">
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Goodreads</a></li>
-                    </ul>
-                </div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo">E. A. Whitmore</a>
+                <p class="footer-tagline">
+                    Stories that stay with you. Novelist writing about identity, family, belonging, and the beautiful complexity of being human.
+                </p>
             </div>
-            <div class="footer-bottom">
-                <div>© 2026 Elena A. Whitmore. Fictional author website concept.</div>
-                <div class="footer-social">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                </div>
+            <div>
+                <div class="footer-heading">Explore</div>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#books">Books</a></li>
+                    <li><a href="#">Journal</a></li>
+                    <li><a href="#">Events & Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Connect</div>
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Goodreads</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Newsletter</div>
+                <ul class="footer-links">
+                    <li><a href="#newsletter">Join the Reading Circle</a></li>
+                    <li><a href="#">Book Club Resources</a></li>
+                    <li><a href="#">Media Kit</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Elena A. Whitmore. Fictional author website concept.</div>
+            <div class="footer-social">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
             </div>
         </div>
     </footer>
 
-    <!-- ============================================
-         JAVASCRIPT
-         ============================================ -->
     <script>
-        // Nav scroll effect
+        // Nav scroll
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            nav.classList.toggle('scrolled', window.scrollY > 60);
         });
         
-        // Scroll reveal with IntersectionObserver
+        // Scroll reveal
         const revealElements = document.querySelectorAll('.reveal');
-        
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Optional: unobserve after revealing
-                    // revealObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -40px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
         });
         
         revealElements.forEach(el => revealObserver.observe(el));
         
-        // Smooth scroll for anchor links
+        // Smooth anchor scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href === '#') return;
-                
                 const target = document.querySelector(href);
                 if (target) {
                     e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-        
-        // Mobile nav toggle (simple toggle - expand for full functionality later)
-        const navToggle = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        navToggle.addEventListener('click', () => {
-            // For this demo, a simple alert to indicate where the menu would open
-            // In a full implementation, this would toggle a mobile menu drawer
-            const isVisible = navLinks.style.display === 'flex';
-            if (window.innerWidth <= 768) {
-                alert('Mobile menu would open here. Full navigation available on desktop.');
-            }
-        });
-        
-        // Stagger hero reveals on load
-        window.addEventListener('load', () => {
-            // The reveal elements already have transition delays via CSS
-            // This just ensures the first paint is smooth
-            document.body.style.opacity = '1';
         });
     </script>
 </body>

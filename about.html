@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Elena — Elena A. Whitmore</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           DESIGN SYSTEM — "The Author as Artifact"
+           ============================================ */
+        :root {
+            --ivory: #F8F5EF;
+            --sand: #E9DFD1;
+            --espresso: #30251F;
+            --terracotta: #B87556;
+            --sage: #7D8570;
+            --body-text: #756A61;
+            --border: #D8CABC;
+            --deep-teal: #1E2B2B;
+            --gold: #C4A574;
+            
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Manrope', system-ui, sans-serif;
+            
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-gentle: cubic-bezier(0.33, 1, 0.68, 1);
+            --transition-dramatic: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--ivory);
+            color: var(--body-text);
+            font-size: 17px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 48px;
+            transition: background 0.5s ease, padding 0.5s ease;
+        }
+        
+        .nav.scrolled {
+            background: rgba(248, 245, 239, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 88px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--espresso);
+            letter-spacing: 0.04em;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-logo:hover { color: var(--terracotta); }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--espresso);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--terracotta);
+            transition: width 0.5s var(--transition-smooth);
+        }
+        
+        .nav-links a:hover { color: var(--terracotta); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--terracotta); }
+        .nav-links a.active::after { width: 100%; }
+        
+        .nav-cta {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border: 1px solid var(--espresso);
+            color: var(--espresso);
+            transition: all 0.4s var(--transition-smooth);
+        }
+        
+        .nav-cta:hover {
+            background: var(--espresso);
+            color: var(--ivory);
+        }
+        
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+        }
+        
+        .nav-toggle span {
+            display: block;
+            width: 26px;
+            height: 1px;
+            background: var(--espresso);
+        }
+        
+        /* ============================================
+           PAGE HERO — About
+           ============================================ */
+        .page-hero {
+            padding: 200px 0 120px;
+            background: var(--ivory);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(ellipse at 80% 40%, rgba(233, 223, 209, 0.6) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .page-hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 100px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-hero-eyebrow {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .page-hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: var(--terracotta);
+        }
+        
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 5.5vw, 80px);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--espresso);
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+        
+        .page-hero-title em {
+            font-style: italic;
+            color: var(--terracotta);
+            font-weight: 500;
+        }
+        
+        .page-hero-intro {
+            font-size: 18px;
+            line-height: 1.85;
+            color: var(--body-text);
+            max-width: 480px;
+        }
+        
+        .page-hero-portrait {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+        
+        .page-hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 1.8s var(--transition-dramatic);
+        }
+        
+        .page-hero-portrait:hover img {
+            transform: scale(1.04);
+        }
+        
+        .page-hero-portrait::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--border);
+            transform: translate(20px, 20px);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* ============================================
+           MY STORY — Editorial Split
+           ============================================ */
+        .story {
+            padding: 160px 0;
+            background: var(--ivory);
+        }
+        
+        .story-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 100px;
+            align-items: start;
+        }
+        
+        .story-sidebar {
+            position: sticky;
+            top: 140px;
+        }
+        
+        .story-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 24px;
+        }
+        
+        .story-heading {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.12;
+            color: var(--espresso);
+            margin-bottom: 28px;
+        }
+        
+        .story-image {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s var(--transition-dramatic);
+        }
+        
+        .story-image:hover img {
+            transform: scale(1.04);
+        }
+        
+        .story-content {
+            padding-top: 60px;
+            max-width: 620px;
+        }
+        
+        .story-content p {
+            font-size: 17px;
+            line-height: 1.95;
+            color: var(--body-text);
+            margin-bottom: 28px;
+        }
+        
+        .story-content p:first-child::first-letter {
+            font-family: var(--font-display);
+            font-size: 72px;
+            font-weight: 500;
+            float: left;
+            line-height: 0.8;
+            margin-right: 16px;
+            margin-top: 8px;
+            color: var(--terracotta);
+        }
+        
+        .story-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--terracotta);
+            margin: 48px 0;
+        }
+        
+        .story-content h3 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--espresso);
+            margin-bottom: 20px;
+            margin-top: 48px;
+        }
+        
+        /* ============================================
+           PULL QUOTE
+           ============================================ */
+        .pull-quote {
+            padding: 140px 0;
+            background: var(--sand);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pull-quote::before {
+            content: '"';
+            position: absolute;
+            top: 40px;
+            left: 48px;
+            font-family: var(--font-display);
+            font-size: 300px;
+            line-height: 1;
+            color: rgba(184, 117, 86, 0.1);
+            pointer-events: none;
+        }
+        
+        .pull-quote-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 48px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pull-quote-text {
+            font-family: var(--font-display);
+            font-size: clamp(30px, 4vw, 52px);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.35;
+            color: var(--espresso);
+            margin-bottom: 32px;
+        }
+        
+        .pull-quote-attribution {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+        }
+        
+        /* ============================================
+           TIMELINE — The Beginning
+           ============================================ */
+        .timeline {
+            padding: 160px 0;
+            background: var(--ivory);
+        }
+        
+        .timeline-header {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            padding: 0 48px;
+            text-align: center;
+        }
+        
+        .timeline-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 24px;
+        }
+        
+        .timeline-heading {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--espresso);
+            margin-bottom: 20px;
+        }
+        
+        .timeline-subheading {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--body-text);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        
+        .timeline-items {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 48px;
+            position: relative;
+        }
+        
+        .timeline-items::before {
+            content: '';
+            position: absolute;
+            left: 48px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 48px;
+            padding: 48px 0;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 44px;
+            top: 60px;
+            width: 9px;
+            height: 9px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--terracotta);
+            text-align: right;
+            padding-right: 24px;
+        }
+        
+        .timeline-content h4 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--espresso);
+            margin-bottom: 12px;
+        }
+        
+        .timeline-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--body-text);
+        }
+        
+        /* ============================================
+           WRITING PHILOSOPHY — Dark Section
+           ============================================ */
+        .philosophy {
+            padding: 160px 0;
+            background: var(--deep-teal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .philosophy::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 70%;
+            height: 160%;
+            background: radial-gradient(ellipse at center, rgba(196, 165, 116, 0.06) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        
+        .philosophy-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .philosophy-content {
+            max-width: 520px;
+        }
+        
+        .philosophy-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 28px;
+        }
+        
+        .philosophy-heading {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 4.5vw, 58px);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--ivory);
+            margin-bottom: 32px;
+        }
+        
+        .philosophy-heading em {
+            font-style: italic;
+            color: var(--gold);
+        }
+        
+        .philosophy-text {
+            font-size: 16px;
+            line-height: 1.9;
+            color: rgba(248, 245, 239, 0.7);
+            margin-bottom: 24px;
+        }
+        
+        .philosophy-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+        
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s var(--transition-dramatic);
+            filter: brightness(0.85) contrast(1.05);
+        }
+        
+        .philosophy-image:hover img {
+            transform: scale(1.04);
+        }
+        
+        /* ============================================
+           BEYOND THE PAGES
+           ============================================ */
+        .beyond {
+            padding: 160px 0;
+            background: var(--sand);
+        }
+        
+        .beyond-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        
+        .beyond-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 80px;
+        }
+        
+        .beyond-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 24px;
+        }
+        
+        .beyond-heading {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--espresso);
+            margin-bottom: 20px;
+        }
+        
+        .beyond-subheading {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--body-text);
+        }
+        
+        .beyond-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .beyond-card {
+            background: var(--ivory);
+            overflow: hidden;
+            transition: transform 0.6s var(--transition-gentle), box-shadow 0.6s var(--transition-gentle);
+        }
+        
+        .beyond-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(48, 37, 31, 0.08);
+        }
+        
+        .beyond-card-image {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        
+        .beyond-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--transition-gentle);
+        }
+        
+        .beyond-card:hover .beyond-card-image img {
+            transform: scale(1.06);
+        }
+        
+        .beyond-card-content {
+            padding: 32px;
+        }
+        
+        .beyond-card-content h4 {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--espresso);
+            margin-bottom: 12px;
+        }
+        
+        .beyond-card-content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--body-text);
+        }
+        
+        /* ============================================
+           CLOSING CTA
+           ============================================ */
+        .closing-cta {
+            padding: 160px 0;
+            background: var(--ivory);
+            text-align: center;
+        }
+        
+        .closing-cta-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        
+        .closing-cta-text {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.25;
+            color: var(--espresso);
+            margin-bottom: 40px;
+        }
+        
+        .closing-cta-text em {
+            font-style: italic;
+            color: var(--terracotta);
+        }
+        
+        .closing-cta-actions {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            background: var(--espresso);
+            color: var(--ivory);
+            border: 1px solid var(--espresso);
+            transition: all 0.4s var(--transition-smooth);
+        }
+        
+        .btn-primary:hover {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+        
+        .btn-secondary {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            background: transparent;
+            color: var(--espresso);
+            border: 1px solid var(--border);
+            border-left: none;
+            transition: all 0.4s var(--transition-smooth);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--espresso);
+            background: var(--espresso);
+            color: var(--ivory);
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 100px 0 48px;
+            background: var(--sand);
+        }
+        
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+        
+        .footer-brand .nav-logo {
+            font-size: 26px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .footer-tagline {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--body-text);
+            max-width: 300px;
+        }
+        
+        .footer-heading {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            margin-bottom: 24px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        
+        .footer-links a {
+            font-size: 14px;
+            color: var(--body-text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: var(--terracotta); }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 48px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--body-text);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .footer-social a {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--body-text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-social a:hover { color: var(--terracotta); }
+        
+        /* ============================================
+           SCROLL REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s var(--transition-gentle), 
+                        transform 1s var(--transition-gentle);
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
+        
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1200px) {
+            .nav { padding: 0 32px; }
+            .nav.scrolled { padding: 0 32px; }
+            .page-hero-inner, .story-inner, .philosophy-inner { padding: 0 32px; }
+            .timeline-header, .timeline-items { padding: 0 32px; }
+            .beyond-inner { padding: 0 32px; }
+            .footer-inner { padding: 0 32px; gap: 48px; }
+            .footer-bottom { padding: 40px 32px 0; }
+        }
+        
+        @media (max-width: 1024px) {
+            .page-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .page-hero-portrait {
+                max-width: 400px;
+            }
+            
+            .story-inner {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .story-sidebar {
+                position: static;
+            }
+            
+            .story-image {
+                max-width: 360px;
+            }
+            
+            .story-content {
+                padding-top: 0;
+            }
+            
+            .philosophy-inner {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .philosophy-image {
+                max-width: 400px;
+                order: -1;
+            }
+            
+            .beyond-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav { padding: 0 24px; }
+            .nav.scrolled { padding: 0 24px; }
+            .nav-inner { height: 72px; }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-toggle { display: flex; }
+            
+            .page-hero { padding: 140px 0 80px; }
+            .page-hero-inner { padding: 0 24px; }
+            .page-hero-title { font-size: clamp(38px, 10vw, 56px); }
+            
+            .story, .timeline, .philosophy, .beyond, .closing-cta { padding: 100px 0; }
+            .story-inner { padding: 0 24px; }
+            .story-content { padding-top: 0; }
+            
+            .pull-quote { padding: 100px 0; }
+            .pull-quote-inner { padding: 0 24px; }
+            .pull-quote::before { font-size: 180px; top: 20px; left: 20px; }
+            
+            .timeline-header { padding: 0 24px; margin-bottom: 50px; }
+            .timeline-items { padding: 0 24px; }
+            .timeline-items::before { left: 24px; }
+            .timeline-item { grid-template-columns: 1fr; gap: 12px; padding: 36px 0; }
+            .timeline-item::before { left: 20px; top: 44px; }
+            .timeline-year { text-align: left; padding-left: 40px; padding-right: 0; font-size: 22px; }
+            .timeline-content { padding-left: 40px; }
+            
+            .philosophy-inner { padding: 0 24px; }
+            
+            .beyond-inner { padding: 0 24px; }
+            .beyond-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            
+            .closing-cta-inner { padding: 0 24px; }
+            .closing-cta-actions { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; text-align: center; border-left: 1px solid var(--espresso); }
+            .btn-secondary { border-top: none; }
+            
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">E. A. Whitmore</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="journal.html">Journal</a></li>
+                <li><a href="events.html">Events & Press</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="index.html#newsletter" class="nav-cta">Reading Circle</a>
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <div class="page-hero-content reveal">
+                <div class="page-hero-eyebrow">A story behind the stories</div>
+                <h1 class="page-hero-title">
+                    Behind every story,<br>
+                    there's a <em>story</em> of its own.
+                </h1>
+                <p class="page-hero-intro">
+                    I've always been interested in the moments that make us who we are: where we come from, what we remember, what we leave unsaid, and the ways we find our way back to ourselves.
+                </p>
+            </div>
+            <div class="page-hero-portrait reveal reveal-delay-1">
+                <img src="https://ik.imagekit.io/nwtyxrcs8/elena.png" 
+                     alt="Elena A. Whitmore" 
+                     loading="eager">
+            </div>
+        </div>
+    </section>
+
+    <!-- MY STORY -->
+    <section class="story">
+        <div class="story-inner">
+            <div class="story-sidebar reveal">
+                <div class="story-label">My Story</div>
+                <h2 class="story-heading">A life shaped by stories</h2>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&q=80" 
+                         alt="Elena's writing space" 
+                         loading="lazy">
+                </div>
+            </div>
+            <div class="story-content reveal reveal-delay-1">
+                <p>
+                    I'm Elena A. Whitmore, a British-Nigerian novelist drawn to the emotional landscapes of everyday life. I grew up between stories told around family tables, half-remembered places, and the questions that seemed to follow me from one chapter of life to the next. Over time, those observations became the beginnings of fiction.
+                </p>
+                <p>
+                    I write contemporary and literary fiction about family, identity, love, memory, and belonging. I'm interested in the complicated ways people care for one another, the histories that travel through generations, and the possibility of making peace with the parts of ourselves we once struggled to understand.
+                </p>
+                <p>
+                    For me, writing is a way of paying attention. It allows me to sit with a question, follow a character into unfamiliar territory, and discover what might be waiting on the other side of a difficult truth.
+                </p>
+                
+                <div class="story-divider"></div>
+                
+                <h3>The beginning</h3>
+                <p>
+                    Before I thought of myself as a writer, I was a collector of details: the rhythm of a familiar voice, the atmosphere of a room after an important conversation, the way a place can feel different when you return to it years later. I began writing these observations down, first in notebooks and then in stories.
+                </p>
+                <p>
+                    The stories grew as I did. They became a way to explore the questions I could not always answer in ordinary conversation. Eventually, those pages became the foundation for my novels.
+                </p>
+                
+                <div class="story-divider"></div>
+                
+                <h3>My inspiration</h3>
+                <p>
+                    My inspiration often comes from the spaces between big events: a journey home, a family photograph, an unexpected kindness, a letter kept in a drawer. I'm drawn to the relationships that shape us and to the small acts of courage that rarely announce themselves.
+                </p>
+                <p>
+                    I'm also inspired by the many ways people understand home. It can be a place, a person, a language, a memory, or something we spend years learning to create for ourselves.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <section class="pull-quote">
+        <div class="pull-quote-inner reveal">
+            <p class="pull-quote-text">
+                "I am interested in the things people don't always say, but never quite forget."
+            </p>
+            <div class="pull-quote-attribution">— Elena A. Whitmore</div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline">
+        <div class="timeline-header reveal">
+            <div class="timeline-label">The Journey</div>
+            <h2 class="timeline-heading">A writer's path, in chapters.</h2>
+            <p class="timeline-subheading">
+                Some moments shape us quietly. These are the chapters that led me to the page.
+            </p>
+        </div>
+        
+        <div class="timeline-items">
+            <div class="timeline-item reveal">
+                <div class="timeline-year">Before</div>
+                <div class="timeline-content">
+                    <h4>A collector of details</h4>
+                    <p>Before I called myself a writer, I was someone who noticed things. The rhythm of a familiar voice. The atmosphere of a room after an important conversation. The way a place can feel different when you return to it years later.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal reveal-delay-1">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-content">
+                    <h4>The first notebook</h4>
+                    <p>What began as scattered observations became a habit. I started writing every day—not for anyone else, but because the pages helped me understand the questions I couldn't answer in ordinary conversation.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal reveal-delay-2">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-content">
+                    <h4>The first novel</h4>
+                    <p><em>The Things We Leave Behind</em> was published. It was a story about family secrets, forgiveness, and the past we carry—themes that would continue to shape my work.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal reveal-delay-3">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <h4>A map of borrowed light</h4>
+                    <p>My second novel explored belonging, reinvention, and the courage to begin somewhere new. It was a story I needed to write as much as my readers needed to read it.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h4>When the rain remembers</h4>
+                    <p>My third novel—a deeply personal story about mothers and daughters, memory, and the complicated meaning of home. It is, in many ways, the book I was always working toward.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WRITING PHILOSOPHY -->
+    <section class="philosophy">
+        <div class="philosophy-inner">
+            <div class="philosophy-content reveal">
+                <div class="philosophy-label">The Writing Process</div>
+                <h2 class="philosophy-heading">A little patience,<br>a lot of <em>listening.</em></h2>
+                <p class="philosophy-text">
+                    My writing process usually begins with a question or an image I can't quite leave alone. I make notes, follow the characters, and let the first version be imperfect.
+                </p>
+                <p class="philosophy-text">
+                    Then comes the slower work: listening for the right voice, finding the shape of the story, and returning to each page until it feels honest.
+                </p>
+                <p class="philosophy-text">
+                    I like quiet mornings, handwritten notes, well-loved books, and the kind of walk that gives a difficult paragraph room to breathe. Some days the words arrive easily. Other days, the work is simply showing up again.
+                </p>
+            </div>
+            <div class="philosophy-image reveal reveal-delay-1">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900&q=80" 
+                     alt="Writing desk with notebook" 
+                     loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- BEYOND THE PAGES -->
+    <section class="beyond">
+        <div class="beyond-inner">
+            <div class="beyond-header reveal">
+                <div class="beyond-label">Beyond the Pages</div>
+                <h2 class="beyond-heading">When I'm not writing...</h2>
+                <p class="beyond-subheading">
+                    You'll often find me with a book nearby, collecting ideas in a notebook, visiting a bookshop, or taking the long way home.
+                </p>
+            </div>
+            
+            <div class="beyond-grid">
+                <div class="beyond-card reveal">
+                    <div class="beyond-card-image">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" 
+                             alt="Books and reading" 
+                             loading="lazy">
+                    </div>
+                    <div class="beyond-card-content">
+                        <h4>Reading</h4>
+                        <p>I love thoughtful conversations, old photographs, beautiful stationery, and discovering the stories behind places.</p>
+                    </div>
+                </div>
+                
+                <div class="beyond-card reveal reveal-delay-1">
+                    <div class="beyond-card-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" 
+                             alt="Collecting ideas" 
+                             loading="lazy">
+                    </div>
+                    <div class="beyond-card-content">
+                        <h4>Collecting</h4>
+                        <p>I believe a creative life is built from curiosity. The more carefully we look at the world, the more there is to write about.</p>
+                    </div>
+                </div>
+                
+                <div class="beyond-card reveal reveal-delay-2">
+                    <div class="beyond-card-image">
+                        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80" 
+                             alt="Bookshops and walks" 
+                             loading="lazy">
+                    </div>
+                    <div class="beyond-card-content">
+                        <h4>Wandering</h4>
+                        <p>I love thoughtful conversations, old photographs, beautiful stationery, and discovering the stories behind places.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="closing-cta">
+        <div class="closing-cta-inner reveal">
+            <p class="closing-cta-text">
+                Thank you for spending a little time here. I hope you find a story that feels like it was <em>waiting</em> for you.
+            </p>
+            <div class="closing-cta-actions">
+                <a href="books.html" class="btn-primary">Browse the Books</a>
+                <a href="contact.html" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">E. A. Whitmore</a>
+                <p class="footer-tagline">
+                    Stories that stay with you. Novelist writing about identity, family, belonging, and the beautiful complexity of being human.
+                </p>
+            </div>
+            <div>
+                <div class="footer-heading">Explore</div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="journal.html">Journal</a></li>
+                    <li><a href="events.html">Events & Press</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Connect</div>
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Goodreads</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Newsletter</div>
+                <ul class="footer-links">
+                    <li><a href="index.html#newsletter">Join the Reading Circle</a></li>
+                    <li><a href="#">Book Club Resources</a></li>
+                    <li><a href="#">Media Kit</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Elena A. Whitmore. Fictional author website concept.</div>
+            <div class="footer-social">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+        
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        });
+        
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        // Smooth anchor scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
