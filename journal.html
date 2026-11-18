@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books — Elena A. Whitmore</title>
+    <title>Journal — Elena A. Whitmore</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,110 +157,64 @@
             margin-top: 8px;
         }
         
-        /* FEATURED BOOK */
-        .featured-book {
+        /* FEATURED ARTICLE */
+        .featured-article {
             padding: 0 0 160px;
             background: var(--ivory);
         }
-        .featured-book-inner {
+        .featured-article-inner {
             max-width: 1400px; margin: 0 auto; padding: 0 48px;
             display: grid;
-            grid-template-columns: 1fr 1.1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 100px;
             align-items: center;
         }
-        .featured-book-cover {
+        .featured-article-image {
             position: relative;
-            perspective: 1400px;
-            max-width: 420px;
-            margin: 0 auto;
-        }
-        .book-cover {
-            width: 100%;
-            aspect-ratio: 2/3;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1s var(--transition-dramatic);
-            box-shadow:
-                0 8px 16px rgba(48, 37, 31, 0.1),
-                0 40px 80px rgba(48, 37, 31, 0.15),
-                0 80px 120px rgba(48, 37, 31, 0.08);
-            border-radius: 2px 8px 8px 2px;
+            aspect-ratio: 4/3;
             overflow: hidden;
         }
-        .book-cover:hover { transform: rotateY(-12deg) rotateX(3deg) translateY(-12px); }
-        .book-cover-rain {
-            background: linear-gradient(165deg, #2D3A3A 0%, #1A2424 35%, #3D4F4F 100%);
-            position: relative;
+        .featured-article-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.5s var(--transition-dramatic);
         }
-        .book-cover-rain::before {
+        .featured-article-image:hover img { transform: scale(1.04); }
+        .featured-article-image::after {
             content: '';
             position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse at 25% 15%, rgba(135, 168, 168, 0.3) 0%, transparent 45%),
-                radial-gradient(ellipse at 75% 85%, rgba(184, 117, 86, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(196, 165, 116, 0.08) 0%, transparent 60%);
+            border: 1px solid var(--border);
+            transform: translate(20px, 20px);
+            pointer-events: none;
+            z-index: -1;
         }
-        .cover-inner {
-            position: relative; z-index: 1;
-            display: flex; flex-direction: column; justify-content: space-between;
-            height: 100%; padding: 44px 36px;
-        }
-        .cover-author {
-            font-family: var(--font-body); font-size: 9px; font-weight: 600;
-            letter-spacing: 0.4em; text-transform: uppercase;
-            color: rgba(248, 245, 239, 0.5); margin-bottom: 28px; text-align: center;
-        }
-        .cover-title {
-            font-family: var(--font-display); font-size: 40px; font-weight: 500;
-            line-height: 1.1; color: #F8F5EF; letter-spacing: 0.02em; text-align: center;
-        }
-        .cover-title em { font-style: italic; color: var(--gold); }
-        .cover-ornament {
-            width: 64px; height: 64px; border: 1px solid rgba(248, 245, 239, 0.15);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: rgba(248, 245, 239, 0.3); font-size: 22px; margin: 0 auto;
-        }
-        .cover-bottom { text-align: center; }
-        .cover-tagline {
-            font-family: var(--font-body); font-size: 9px; letter-spacing: 0.25em;
-            text-transform: uppercase; color: rgba(248, 245, 239, 0.4); margin-bottom: 10px;
-        }
-        .cover-imprint {
-            font-family: var(--font-body); font-size: 8px; letter-spacing: 0.3em;
-            text-transform: uppercase; color: rgba(248, 245, 239, 0.25);
-        }
-        .featured-book-content { max-width: 520px; }
-        .featured-label {
+        .featured-article-content { max-width: 520px; }
+        .featured-article-label {
             font-size: 10px; font-weight: 600; letter-spacing: 0.3em;
             text-transform: uppercase; color: var(--terracotta); margin-bottom: 28px;
             display: flex; align-items: center; gap: 16px;
         }
-        .featured-label::before {
+        .featured-article-label::before {
             content: ''; display: inline-block; width: 40px; height: 1px; background: var(--terracotta);
         }
-        .featured-heading {
+        .featured-article-heading {
             font-family: var(--font-display);
-            font-size: clamp(42px, 5vw, 64px);
-            font-weight: 400; line-height: 1.08;
-            color: var(--espresso); margin-bottom: 32px;
+            font-size: clamp(36px, 4.5vw, 56px);
+            font-weight: 400; line-height: 1.1;
+            color: var(--espresso); margin-bottom: 24px;
         }
-        .featured-heading em { font-style: italic; color: var(--terracotta); }
-        .featured-meta {
-            display: flex; gap: 24px; margin-bottom: 28px;
+        .featured-article-heading em { font-style: italic; color: var(--terracotta); }
+        .featured-article-meta {
+            display: flex; gap: 24px; margin-bottom: 24px;
             font-size: 12px; font-weight: 500; color: var(--body-text);
             letter-spacing: 0.08em; text-transform: uppercase;
         }
-        .featured-meta span { display: flex; align-items: center; gap: 10px; }
-        .featured-meta span::before {
+        .featured-article-meta span { display: flex; align-items: center; gap: 10px; }
+        .featured-article-meta span::before {
             content: ''; display: inline-block; width: 4px; height: 4px;
             background: var(--terracotta); border-radius: 50%;
         }
-        .featured-description {
-            font-size: 17px; line-height: 1.9; color: var(--body-text); margin-bottom: 20px;
-        }
-        .featured-actions {
-            display: flex; gap: 0; margin-top: 36px; flex-wrap: wrap;
+        .featured-article-excerpt {
+            font-size: 17px; line-height: 1.9; color: var(--body-text); margin-bottom: 36px;
         }
         .btn-primary {
             font-family: var(--font-body); font-size: 12px; font-weight: 600;
@@ -268,218 +222,154 @@
             padding: 20px 40px; background: var(--espresso); color: var(--ivory);
             border: 1px solid var(--espresso);
             transition: all 0.4s var(--transition-smooth);
+            display: inline-block;
         }
         .btn-primary:hover { background: var(--terracotta); border-color: var(--terracotta); }
-        .btn-secondary {
-            font-family: var(--font-body); font-size: 12px; font-weight: 600;
-            letter-spacing: 0.15em; text-transform: uppercase;
-            padding: 20px 40px; background: transparent; color: var(--espresso);
-            border: 1px solid var(--border); border-left: none;
-            transition: all 0.4s var(--transition-smooth);
-        }
-        .btn-secondary:hover { border-color: var(--espresso); background: var(--espresso); color: var(--ivory); }
         
-        /* ALL BOOKS GRID */
-        .all-books {
-            padding: 160px 0;
-            background: var(--sand);
+        /* CATEGORY FILTER */
+        .category-filter {
+            padding: 0 0 80px;
+            background: var(--ivory);
         }
-        .section-header {
-            max-width: 1400px; margin: 0 auto 80px; padding: 0 48px;
-            display: flex; justify-content: space-between; align-items: flex-end;
+        .category-filter-inner {
+            max-width: 1400px; margin: 0 auto; padding: 0 48px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
         }
-        .section-header-left { max-width: 520px; }
-        .section-label {
-            font-size: 10px; font-weight: 600; letter-spacing: 0.3em;
-            text-transform: uppercase; color: var(--terracotta); margin-bottom: 24px;
+        .filter-btn {
+            font-family: var(--font-body);
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 12px 24px;
+            border: 1px solid var(--border);
+            color: var(--body-text);
+            transition: all 0.3s ease;
+            background: transparent;
         }
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(40px, 5vw, 64px);
-            font-weight: 400; line-height: 1.08; color: var(--espresso);
+        .filter-btn:hover {
+            border-color: var(--espresso);
+            color: var(--espresso);
         }
-        .section-subtitle {
-            font-size: 16px; line-height: 1.7; color: var(--body-text);
-            margin-top: 16px;
+        .filter-btn.active {
+            background: var(--espresso);
+            border-color: var(--espresso);
+            color: var(--ivory);
         }
-        .books-grid {
+        
+        /* ARTICLE GRID */
+        .article-grid {
+            padding: 0 0 160px;
+            background: var(--ivory);
+        }
+        .article-grid-inner {
             max-width: 1400px; margin: 0 auto; padding: 0 48px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 60px 48px;
         }
-        .book-card {
+        .article-card {
             transition: transform 0.6s var(--transition-gentle);
         }
-        .book-card:hover { transform: translateY(-10px); }
-        .book-card-cover {
-            aspect-ratio: 2/3;
-            position: relative;
-            margin-bottom: 32px;
-            perspective: 1000px;
+        .article-card:hover { transform: translateY(-8px); }
+        .article-card-image {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            margin-bottom: 24px;
         }
-        .book-card-cover .book-cover {
-            box-shadow:
-                0 4px 8px rgba(48, 37, 31, 0.08),
-                0 20px 40px rgba(48, 37, 31, 0.12);
+        .article-card-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.2s var(--transition-gentle);
         }
-        .book-card-cover .book-cover:hover {
-            transform: rotateY(-8deg) translateY(-6px);
-        }
-        .book-cover-leave {
-            background: linear-gradient(150deg, #3A3028 0%, #2A2018 60%, #1E1610 100%);
-        }
-        .book-cover-map {
-            background: linear-gradient(150deg, #2B3D3D 0%, #1A2A2A 60%, #122020 100%);
-        }
-        .book-cover-art {
-            background: linear-gradient(150deg, #4A3A2A 0%, #3A2A1A 60%, #2A1A10 100%);
-        }
-        .book-cover-rain-small {
-            background: linear-gradient(165deg, #2D3A3A 0%, #1A2424 35%, #3D4F4F 100%);
-        }
-        .book-card-year {
+        .article-card:hover .article-card-image img { transform: scale(1.06); }
+        .article-card-category {
             font-size: 10px; font-weight: 600; letter-spacing: 0.15em;
-            text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px;
+            text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
         }
-        .book-card-title {
-            font-family: var(--font-display); font-size: 28px; font-weight: 500;
-            color: var(--espresso); margin-bottom: 12px; line-height: 1.2;
+        .article-card-title {
+            font-family: var(--font-display);
+            font-size: 26px; font-weight: 500;
+            color: var(--espresso); margin-bottom: 12px;
+            line-height: 1.25;
         }
-        .book-card-desc {
-            font-size: 14px; line-height: 1.7; color: var(--body-text); margin-bottom: 16px;
+        .article-card-excerpt {
+            font-size: 14px; line-height: 1.7; color: var(--body-text);
+            margin-bottom: 16px;
         }
-        .book-card-link {
+        .article-card-meta {
+            display: flex; gap: 16px;
+            font-size: 11px; font-weight: 500; color: var(--body-text);
+            letter-spacing: 0.05em;
+        }
+        .article-card-link {
             font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
             text-transform: uppercase; color: var(--espresso);
             display: inline-flex; align-items: center; gap: 8px;
             transition: gap 0.3s ease, color 0.3s ease;
+            margin-top: 16px;
         }
-        .book-card-link:hover { gap: 14px; color: var(--terracotta); }
+        .article-card-link:hover { gap: 14px; color: var(--terracotta); }
         
-        /* COMING SOON */
-        .coming-soon {
+        /* NEWSLETTER */
+        .newsletter {
             padding: 160px 0;
             background: var(--deep-teal);
             position: relative;
             overflow: hidden;
         }
-        .coming-soon::before {
+        .newsletter::before {
             content: '';
-            position: absolute; top: -30%; right: -20%; width: 70%; height: 160%;
-            background: radial-gradient(ellipse at center, rgba(196, 165, 116, 0.06) 0%, transparent 65%);
+            position: absolute; top: -40%; left: -10%; width: 70%; height: 180%;
+            background: radial-gradient(ellipse at center, rgba(184, 117, 86, 0.1) 0%, transparent 60%);
             pointer-events: none;
         }
-        .coming-soon-inner {
-            max-width: 1400px; margin: 0 auto; padding: 0 48px;
-            display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
-            gap: 100px;
-            align-items: center;
-            position: relative; z-index: 1;
+        .newsletter-inner {
+            max-width: 680px; margin: 0 auto; padding: 0 48px;
+            text-align: center; position: relative; z-index: 1;
         }
-        .coming-soon-cover {
-            position: relative;
-            perspective: 1400px;
-            max-width: 320px;
-            margin: 0 auto;
-        }
-        .coming-soon-content { max-width: 560px; }
-        .coming-soon-label {
+        .newsletter-label {
             font-size: 10px; font-weight: 600; letter-spacing: 0.3em;
-            text-transform: uppercase; color: var(--terracotta); margin-bottom: 28px;
-            display: flex; align-items: center; gap: 16px;
+            text-transform: uppercase; color: var(--terracotta); margin-bottom: 32px;
         }
-        .coming-soon-label::before {
-            content: ''; display: inline-block; width: 40px; height: 1px; background: var(--terracotta);
-        }
-        .coming-soon-heading {
+        .newsletter-title {
             font-family: var(--font-display);
-            font-size: clamp(40px, 4.5vw, 58px);
-            font-weight: 400; line-height: 1.1; color: var(--ivory); margin-bottom: 28px;
+            font-size: clamp(44px, 5.5vw, 72px);
+            font-weight: 400; line-height: 1.05;
+            color: var(--ivory); margin-bottom: 28px;
         }
-        .coming-soon-heading em { font-style: italic; color: var(--gold); }
-        .coming-soon-text {
-            font-size: 16px; line-height: 1.9; color: rgba(248, 245, 239, 0.7); margin-bottom: 32px;
+        .newsletter-title em { font-style: italic; color: var(--gold); }
+        .newsletter-description {
+            font-size: 16px; line-height: 1.8;
+            color: rgba(248, 245, 239, 0.6);
+            margin-bottom: 48px; max-width: 480px;
+            margin-left: auto; margin-right: auto;
         }
-        .coming-soon-meta {
-            display: flex; gap: 24px; margin-bottom: 32px;
-            font-size: 12px; font-weight: 500; color: rgba(248, 245, 239, 0.5);
-            letter-spacing: 0.08em; text-transform: uppercase;
+        .newsletter-form {
+            display: flex; gap: 0; max-width: 520px; margin: 0 auto;
         }
-        .coming-soon-meta span { display: flex; align-items: center; gap: 10px; }
-        .coming-soon-meta span::before {
-            content: ''; display: inline-block; width: 4px; height: 4px;
-            background: var(--terracotta); border-radius: 50%;
+        .newsletter-input {
+            flex: 1; padding: 20px 24px;
+            background: rgba(248, 245, 239, 0.06);
+            border: 1px solid rgba(248, 245, 239, 0.12);
+            border-right: none;
+            font-family: var(--font-body); font-size: 15px;
+            color: var(--ivory); outline: none;
+            transition: border-color 0.3s ease, background 0.3s ease;
         }
-        .btn-outline-light {
+        .newsletter-input::placeholder { color: rgba(248, 245, 239, 0.3); }
+        .newsletter-input:focus { border-color: var(--terracotta); background: rgba(248, 245, 239, 0.1); }
+        .newsletter-btn {
+            padding: 20px 36px; background: var(--terracotta); color: var(--ivory);
             font-family: var(--font-body); font-size: 12px; font-weight: 600;
-            letter-spacing: 0.15em; text-transform: uppercase;
-            padding: 20px 44px; background: transparent; color: var(--ivory);
-            border: 1px solid rgba(248, 245, 239, 0.3);
-            transition: all 0.4s var(--transition-smooth);
+            letter-spacing: 0.12em; text-transform: uppercase;
+            transition: background 0.3s ease; white-space: nowrap;
         }
-        .btn-outline-light:hover { background: var(--terracotta); border-color: var(--terracotta); }
-        
-        /* PURCHASE INFO */
-        .purchase-info {
-            padding: 120px 0;
-            background: var(--ivory);
+        .newsletter-btn:hover { background: #A5674A; }
+        .newsletter-smallprint {
+            margin-top: 24px; font-size: 11px; color: rgba(248, 245, 239, 0.25);
         }
-        .purchase-inner {
-            max-width: 1400px; margin: 0 auto; padding: 0 48px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-        }
-        .purchase-card {
-            text-align: center;
-            padding: 48px 32px;
-            border: 1px solid var(--border);
-            transition: border-color 0.4s ease, transform 0.4s ease;
-        }
-        .purchase-card:hover {
-            border-color: var(--terracotta);
-            transform: translateY(-4px);
-        }
-        .purchase-icon {
-            font-family: var(--font-display);
-            font-size: 36px;
-            color: var(--terracotta);
-            margin-bottom: 20px;
-        }
-        .purchase-title {
-            font-family: var(--font-display);
-            font-size: 24px; font-weight: 500;
-            color: var(--espresso); margin-bottom: 12px;
-        }
-        .purchase-desc {
-            font-size: 14px; line-height: 1.7; color: var(--body-text); margin-bottom: 20px;
-        }
-        .purchase-link {
-            font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-            text-transform: uppercase; color: var(--espresso);
-            display: inline-flex; align-items: center; gap: 8px;
-            transition: gap 0.3s ease, color 0.3s ease;
-        }
-        .purchase-link:hover { gap: 14px; color: var(--terracotta); }
-        
-        /* CLOSING CTA */
-        .closing-cta {
-            padding: 160px 0;
-            background: var(--sand);
-            text-align: center;
-        }
-        .closing-cta-inner { max-width: 640px; margin: 0 auto; padding: 0 48px; }
-        .closing-cta-text {
-            font-family: var(--font-display);
-            font-size: clamp(32px, 4vw, 52px);
-            font-weight: 400; line-height: 1.25;
-            color: var(--espresso); margin-bottom: 40px;
-        }
-        .closing-cta-text em { font-style: italic; color: var(--terracotta); }
-        .closing-cta-actions { display: flex; gap: 0; justify-content: center; }
-        .closing-cta-actions .btn-secondary { border-left: none; }
         
         /* FOOTER */
         .footer { padding: 100px 0 48px; background: var(--sand); }
@@ -521,20 +411,16 @@
         @media (max-width: 1200px) {
             .nav { padding: 0 32px; }
             .nav.scrolled { padding: 0 32px; }
-            .page-hero-inner, .featured-book-inner, .section-header, .books-grid,
-            .coming-soon-inner, .purchase-inner, .footer-inner { padding: 0 32px; }
+            .page-hero-inner, .featured-article-inner, .category-filter-inner,
+            .article-grid-inner, .footer-inner { padding: 0 32px; }
             .footer-bottom { padding: 40px 32px 0; }
         }
         
         @media (max-width: 1024px) {
             .page-hero-inner { grid-template-columns: 1fr; gap: 40px; }
             .page-hero-count { font-size: 80px; }
-            .featured-book-inner { grid-template-columns: 1fr; gap: 60px; }
-            .featured-book-cover { max-width: 340px; }
-            .books-grid { grid-template-columns: repeat(2, 1fr); }
-            .coming-soon-inner { grid-template-columns: 1fr; gap: 60px; }
-            .coming-soon-cover { max-width: 280px; }
-            .purchase-inner { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+            .featured-article-inner { grid-template-columns: 1fr; gap: 60px; }
+            .article-grid-inner { grid-template-columns: repeat(2, 1fr); }
             .footer-inner { grid-template-columns: 1fr 1fr; gap: 48px; }
         }
         
@@ -551,28 +437,16 @@
             .page-hero-title { font-size: clamp(38px, 10vw, 56px); }
             .page-hero-count { font-size: 60px; }
             
-            .featured-book { padding: 0 0 100px; }
-            .featured-book-inner { padding: 0 24px; }
-            .featured-book-cover { max-width: 280px; }
-            .featured-actions { flex-direction: column; }
-            .featured-actions .btn-primary,
-            .featured-actions .btn-secondary { width: 100%; text-align: center; border-left: 1px solid var(--espresso); }
-            .featured-actions .btn-secondary { border-top: none; }
+            .featured-article { padding: 0 0 100px; }
+            .featured-article-inner { padding: 0 24px; }
+            .category-filter-inner { padding: 0 24px; padding-top: 32px; }
+            .article-grid { padding: 0 0 100px; }
+            .article-grid-inner { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; padding: 0 24px; }
             
-            .all-books, .coming-soon, .purchase-info, .closing-cta { padding: 100px 0; }
-            .section-header { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 50px; }
-            .books-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; padding: 0 24px; }
-            
-            .coming-soon-inner { padding: 0 24px; }
-            .coming-soon-cover { max-width: 240px; }
-            
-            .purchase-inner { padding: 0 24px; }
-            
-            .closing-cta-inner { padding: 0 24px; }
-            .closing-cta-actions { flex-direction: column; }
-            .closing-cta-actions .btn-primary,
-            .closing-cta-actions .btn-secondary { width: 100%; text-align: center; border-left: 1px solid var(--espresso); }
-            .closing-cta-actions .btn-secondary { border-top: none; }
+            .newsletter { padding: 100px 0; }
+            .newsletter-inner { padding: 0 24px; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-input { border-right: 1px solid rgba(248, 245, 239, 0.12); border-bottom: none; }
             
             .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
             .footer-bottom { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px 0; }
@@ -588,8 +462,8 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="books.html" class="active">Books</a></li>
-                <li><a href="journal.html">Journal</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="journal.html" class="active">Journal</a></li>
                 <li><a href="events.html">Events & Press</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -604,205 +478,182 @@
     <section class="page-hero">
         <div class="page-hero-inner">
             <div class="reveal">
-                <div class="page-hero-eyebrow">The Bookshelf</div>
+                <div class="page-hero-eyebrow">Notes from between the pages</div>
                 <h1 class="page-hero-title">
-                    Each book is<br>
-                    a <em>world</em> of its own.
+                    Thoughts, stories &<br>
+                    everything <em>in between.</em>
                 </h1>
                 <p class="page-hero-intro">
-                    From the things we leave behind to the people we become, every story explores a different part of what it means to be human. I hope you find a little of yourself somewhere in these pages.
+                    A place for the ideas that follow me beyond the writing desk: books I return to, lessons from the creative process, small observations, and reflections on the things that make a life.
                 </p>
             </div>
             <div class="page-hero-count reveal reveal-delay-1">
-                03
-                <span>Published Novels</span>
+                06
+                <span>Essays & Notes</span>
             </div>
         </div>
     </section>
 
-    <!-- FEATURED BOOK -->
-    <section class="featured-book">
-        <div class="featured-book-inner">
-            <div class="featured-book-cover reveal">
-                <div class="book-cover book-cover-rain">
-                    <div class="cover-inner">
-                        <div class="cover-author">Elena A. Whitmore</div>
-                        <div class="cover-title">When the<br><em>Rain</em><br>Remembers</div>
-                        <div class="cover-ornament">❦</div>
-                        <div class="cover-bottom">
-                            <div class="cover-tagline">A Novel</div>
-                            <div class="cover-imprint">Whitmore Press</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- FEATURED ARTICLE -->
+    <section class="featured-article">
+        <div class="featured-article-inner">
+            <div class="featured-article-image reveal">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1000&q=80" 
+                     alt="Writing desk with notebook" 
+                     loading="lazy">
             </div>
-            <div class="featured-book-content reveal reveal-delay-1">
-                <div class="featured-label">Featured Release</div>
-                <h2 class="featured-heading">When the <em>Rain</em> Remembers</h2>
-                <div class="featured-meta">
-                    <span>Literary Fiction</span>
-                    <span>2025</span>
-                    <span>Hardcover · Paperback · eBook</span>
+            <div class="featured-article-content reveal reveal-delay-1">
+                <div class="featured-article-label">Featured Essay</div>
+                <h2 class="featured-article-heading">Why I Write About the Things We <em>Don't Say</em></h2>
+                <div class="featured-article-meta">
+                    <span>Writing & Creativity</span>
+                    <span>6 min read</span>
                 </div>
-                <p class="featured-description">
-                    Some families keep their secrets in photographs. Others bury them in silence. When Amara returns to the home she thought she had outgrown, a collection of old letters begins to unravel the history her family never knew how to tell.
+                <p class="featured-article-excerpt">
+                    Some of the most important moments in our lives happen without an audience. They live in pauses, unfinished sentences, and the thoughts we carry long after a conversation ends. Those quiet spaces are often where my stories begin.
                 </p>
-                <p class="featured-description">
-                    A tender story about mothers and daughters, memory and forgiveness, and the complicated meaning of home.
-                </p>
-                <div class="featured-actions">
-                    <a href="book-when-the-rain-remembers.html" class="btn-primary">Discover the Book</a>
-                    <a href="#purchase" class="btn-secondary">Where to Buy</a>
-                </div>
+                <a href="article-why-i-write-about-the-things-we-dont-say.html" class="btn-primary">Read the Essay</a>
             </div>
         </div>
     </section>
 
-    <!-- ALL BOOKS GRID -->
-    <section class="all-books" id="all-books">
-        <div class="section-header reveal">
-            <div class="section-header-left">
-                <div class="section-label">The Collection</div>
-                <h2 class="section-title">Published stories.</h2>
-                <p class="section-subtitle">Three novels, each exploring a different part of what it means to be human.</p>
-            </div>
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter">
+        <div class="category-filter-inner reveal">
+            <button class="filter-btn active" data-filter="all">All Notes</button>
+            <button class="filter-btn" data-filter="writing">Writing & Creativity</button>
+            <button class="filter-btn" data-filter="books">Books & Reading</button>
+            <button class="filter-btn" data-filter="life">Life & Reflections</button>
+            <button class="filter-btn" data-filter="behind">Behind the Stories</button>
         </div>
-        
-        <div class="books-grid">
-            <!-- Book 1 -->
-            <div class="book-card reveal">
-                <div class="book-card-cover">
-                    <div class="book-cover book-cover-leave">
-                        <div class="cover-inner">
-                            <div class="cover-author">Elena A. Whitmore</div>
-                            <div class="cover-title" style="font-size: 30px; color: #E9DFD1;">The Things<br>We <em>Leave</em><br>Behind</div>
-                            <div class="cover-ornament" style="border-color: rgba(233,223,209,0.12); color: rgba(233,223,209,0.25);">❦</div>
-                            <div class="cover-bottom">
-                                <div class="cover-tagline">A Novel</div>
-                                <div class="cover-imprint">2021</div>
-                            </div>
-                        </div>
-                    </div>
+    </div>
+
+    <!-- ARTICLE GRID -->
+    <section class="article-grid">
+        <div class="article-grid-inner">
+            <!-- Article 1 -->
+            <article class="article-card reveal" data-category="writing">
+                <div class="article-card-image">
+                    <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=600&q=80" 
+                         alt="Writing desk" 
+                         loading="lazy">
                 </div>
-                <div class="book-card-year">2021 · Contemporary Fiction</div>
-                <h3 class="book-card-title">The Things We Leave Behind</h3>
-                <p class="book-card-desc">A family story about the secrets we inherit, the truths we avoid, and the possibility of forgiveness.</p>
-                <a href="book-the-things-we-leave-behind.html" class="book-card-link">Discover This Book →</a>
-            </div>
+                <div class="article-card-category">Writing & Creativity</div>
+                <h3 class="article-card-title">The Beauty of Beginning Again</h3>
+                <p class="article-card-excerpt">
+                    Beginning again is rarely as simple as turning a page. Sometimes it asks us to let go of a familiar version of ourselves before we know what comes next.
+                </p>
+                <div class="article-card-meta">
+                    <span>4 min read</span>
+                </div>
+                <a href="#" class="article-card-link">Read the Essay →</a>
+            </article>
             
-            <!-- Book 2 -->
-            <div class="book-card reveal reveal-delay-1">
-                <div class="book-card-cover">
-                    <div class="book-cover book-cover-map">
-                        <div class="cover-inner">
-                            <div class="cover-author">Elena A. Whitmore</div>
-                            <div class="cover-title" style="font-size: 30px; color: #D4E0D0;">A Map of<br><em>Borrowed</em><br>Light</div>
-                            <div class="cover-ornament" style="border-color: rgba(212,224,208,0.12); color: rgba(212,224,208,0.25);">❦</div>
-                            <div class="cover-bottom">
-                                <div class="cover-tagline">A Novel</div>
-                                <div class="cover-imprint">2023</div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Article 2 -->
+            <article class="article-card reveal reveal-delay-1" data-category="books">
+                <div class="article-card-image">
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" 
+                         alt="Books and reading" 
+                         loading="lazy">
                 </div>
-                <div class="book-card-year">2023 · Literary Fiction</div>
-                <h3 class="book-card-title">A Map of Borrowed Light</h3>
-                <p class="book-card-desc">A moving exploration of belonging, unexpected beginnings, and finding your way when life takes an unfamiliar turn.</p>
-                <a href="book-a-map-of-borrowed-light.html" class="book-card-link">Discover This Book →</a>
-            </div>
+                <div class="article-card-category">Books & Reading</div>
+                <h3 class="article-card-title">Five Books That Changed the Way I See Stories</h3>
+                <p class="article-card-excerpt">
+                    A few books stay with us because they change the questions we ask, the details we notice, and the way we understand other people.
+                </p>
+                <div class="article-card-meta">
+                    <span>7 min read</span>
+                </div>
+                <a href="#" class="article-card-link">Read the Essay →</a>
+            </article>
             
-            <!-- Book 3 -->
-            <div class="book-card reveal reveal-delay-2">
-                <div class="book-card-cover">
-                    <div class="book-cover book-cover-rain-small">
-                        <div class="cover-inner">
-                            <div class="cover-author">Elena A. Whitmore</div>
-                            <div class="cover-title" style="font-size: 30px;">When the<br><em>Rain</em><br>Remembers</div>
-                            <div class="cover-ornament">❦</div>
-                            <div class="cover-bottom">
-                                <div class="cover-tagline">A Novel</div>
-                                <div class="cover-imprint">2025</div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Article 3 -->
+            <article class="article-card reveal reveal-delay-2" data-category="behind">
+                <div class="article-card-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" 
+                         alt="Notebook and pen" 
+                         loading="lazy">
                 </div>
-                <div class="book-card-year">2025 · Literary Fiction</div>
-                <h3 class="book-card-title">When the Rain Remembers</h3>
-                <p class="book-card-desc">A daughter returns home and discovers that the past is never quite as quiet as it seems.</p>
-                <a href="book-when-the-rain-remembers.html" class="book-card-link">Discover This Book →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMING SOON -->
-    <section class="coming-soon">
-        <div class="coming-soon-inner">
-            <div class="coming-soon-cover reveal">
-                <div class="book-cover book-cover-art">
-                    <div class="cover-inner">
-                        <div class="cover-author">Elena A. Whitmore</div>
-                        <div class="cover-title" style="font-size: 32px; color: #E9DFD1;">The Art of<br><em>Coming</em><br>Home</div>
-                        <div class="cover-ornament" style="border-color: rgba(233,223,209,0.12); color: rgba(233,223,209,0.25);">❦</div>
-                        <div class="cover-bottom">
-                            <div class="cover-tagline">A Novel</div>
-                            <div class="cover-imprint">2027</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="coming-soon-content reveal reveal-delay-1">
-                <div class="coming-soon-label">Coming in 2027</div>
-                <h2 class="coming-soon-heading">The Art of <em>Coming</em> Home</h2>
-                <div class="coming-soon-meta">
-                    <span>Literary Fiction</span>
-                    <span>2027</span>
-                    <span>Forthcoming</span>
-                </div>
-                <p class="coming-soon-text">
-                    A new story about roots, rediscovery, and the unexpected places where belonging begins. More details will be shared closer to publication.
+                <div class="article-card-category">Behind the Stories</div>
+                <h3 class="article-card-title">What a Character Can Teach You About Yourself</h3>
+                <p class="article-card-excerpt">
+                    The characters we create can surprise us. Sometimes, in trying to understand their choices, we discover something about our own.
                 </p>
-                <p class="coming-soon-text">
-                    Join the Reading Circle to be the first to hear about cover reveals, early excerpts, and publication news.
+                <div class="article-card-meta">
+                    <span>5 min read</span>
+                </div>
+                <a href="#" class="article-card-link">Read the Essay →</a>
+            </article>
+            
+            <!-- Article 4 -->
+            <article class="article-card reveal" data-category="writing">
+                <div class="article-card-image">
+                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80" 
+                         alt="Bookshop" 
+                         loading="lazy">
+                </div>
+                <div class="article-card-category">Writing & Creativity</div>
+                <h3 class="article-card-title">Finding Stories in Everyday Moments</h3>
+                <p class="article-card-excerpt">
+                    A familiar street, a passing remark, a cup left untouched: everyday life is full of details that can become the beginning of something.
                 </p>
-                <a href="index.html#newsletter" class="btn-outline-light">Join the Reading Circle for Updates</a>
-            </div>
+                <div class="article-card-meta">
+                    <span>3 min read</span>
+                </div>
+                <a href="#" class="article-card-link">Read the Essay →</a>
+            </article>
+            
+            <!-- Article 5 -->
+            <article class="article-card reveal reveal-delay-1" data-category="life">
+                <div class="article-card-image">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&q=80" 
+                         alt="Letters and stationery" 
+                         loading="lazy">
+                </div>
+                <div class="article-card-category">Life & Reflections</div>
+                <h3 class="article-card-title">A Letter to Anyone Learning to Let Go</h3>
+                <p class="article-card-excerpt">
+                    A gentle reminder that moving forward does not require us to pretend the past never mattered.
+                </p>
+                <div class="article-card-meta">
+                    <span>5 min read</span>
+                </div>
+                <a href="#" class="article-card-link">Read the Essay →</a>
+            </article>
+            
+            <!-- Article 6 -->
+            <article class="article-card reveal reveal-delay-2" data-category="books">
+                <div class="article-card-image">
+                    <img src="https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&q=80" 
+                         alt="Open book" 
+                         loading="lazy">
+                </div>
+                <div class="article-card-category">Books & Reading</div>
+                <h3 class="article-card-title">The Books I Return To, Again and Again</h3>
+                <p class="article-card-excerpt">
+                    Some books become companions. They wait on the shelf, patient and familiar, until we are ready to hear what they have to say.
+                </p>
+                <div class="article-card-meta">
+                    <span>6 min read</span>
+                </div>
+                <a href="#" class="article-card-link">Read the Essay →</a>
+            </article>
         </div>
     </section>
 
-    <!-- PURCHASE INFO -->
-    <section class="purchase-info" id="purchase">
-        <div class="purchase-inner">
-            <div class="purchase-card reveal">
-                <div class="purchase-icon">❦</div>
-                <h3 class="purchase-title">Independent Bookshops</h3>
-                <p class="purchase-desc">Support local bookshops and discover your next favourite read in person.</p>
-                <a href="#" class="purchase-link">Find a Bookshop →</a>
-            </div>
-            <div class="purchase-card reveal reveal-delay-1">
-                <div class="purchase-icon">❦</div>
-                <h3 class="purchase-title">Online Retailers</h3>
-                <p class="purchase-desc">Available in hardcover, paperback, and eBook from all major retailers.</p>
-                <a href="#" class="purchase-link">View Online Retailers →</a>
-            </div>
-            <div class="purchase-card reveal reveal-delay-2">
-                <div class="purchase-icon">❦</div>
-                <h3 class="purchase-title">Book Club Resources</h3>
-                <p class="purchase-desc">Download discussion guides and reading resources for your book club.</p>
-                <a href="#" class="purchase-link">Download Guides →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CLOSING CTA -->
-    <section class="closing-cta">
-        <div class="closing-cta-inner reveal">
-            <p class="closing-cta-text">
-                Every story begins with an invitation. Choose a book, settle in, and make yourself <em>at home.</em>
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-inner reveal">
+            <div class="newsletter-label">The Reading Circle</div>
+            <h2 class="newsletter-title">A little letter,<br><em>now and then.</em></h2>
+            <p class="newsletter-description">
+                Join my Reading Circle for occasional notes from my writing desk, reading recommendations, early news, and little glimpses behind the stories.
             </p>
-            <div class="closing-cta-actions">
-                <a href="index.html#newsletter" class="btn-primary">Join My Reading Circle</a>
-                <a href="about.html" class="btn-secondary">Meet Elena</a>
-            </div>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for joining the Reading Circle. This is a fictional portfolio demonstration.');">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Join</button>
+            </form>
+            <p class="newsletter-smallprint">No noise, just letters worth opening. Unsubscribe anytime.</p>
         </div>
     </section>
 
@@ -878,6 +729,35 @@
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            });
+        });
+        
+        // Category filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                articleCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = '';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
             });
         });
     </script>
